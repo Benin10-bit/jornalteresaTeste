@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model admin_users {
+  id            String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  username      String   @unique @db.VarChar(50)
+  password_hash String
+  created_at    DateTime @default(now()) @db.Timestamp(6)
+  updated_at    DateTime @default(now()) @db.Timestamp(6)
+}
+
+model noticias {
+  id         String    @id @db.Uuid
+  title      String
+  summary    String?
+  body       String
+  author     String?
+  image1     String?
+  image2     String?
+  image3     String?
+  image4     String?
+  image5     String?
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+  newstype   String?
+}
