@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ======================================================
+   VARIANTE CUSTOM
+====================================================== */
+@custom-variant dark (&:is(.dark *));
+
+/* ======================================================
+   PALETA AUTORAL — FONTE DA VERDADE
+====================================================== */
+:root[data-tema="claro"] {
+  --background: #ebdabe;
+  --foreground: #2e4030;
+  --text: #2e4030;
+  --titulo: #364a3a;
+  --destaques: #b8ac92;
+  --links: #4b6b57;
+  --bordas: #d1c2aa;
+  --botoes: #364a3a;
+  --hover: #2b372a;
+  --cards: #ffffff;
+  --input: #f5f0e1;
+  --shadow: 0 4px 8px rgba(75, 64, 53, 0.3);
+}
+
+:root[data-tema="escuro"] {
+  --background: #1f1f1a;
+  --foreground: #d8d3c2;
+  --text: #d8d3c2;
+  --titulo: #ced7c2;
+  --destaques: #b8ac92;
+  --links: #a5c2a2;
+  --bordas: #3d3d35;
+  --botoes: #a5c2a2;
+  --hover: #91a98f;
+  --cards: #252520;
+  --input: #2a2a2a;
+  --shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* ======================================================
+   TOKENS TÉCNICOS (DERIVADOS DA PALETA)
+====================================================== */
+:root {
+  --radius: 0.625rem;
+
+  /* Base */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Card / Popover */
+  --card: var(--color-white);
+  --card-foreground: var(--color-zinc-800);
+  --popover: var(--color-white);
+  --popover-foreground: var(--color-zinc-800);
+
+  /* Primary / Secondary */
+  --primary: var(--color-zinc-800);
+  --primary-foreground: var(--color-zinc-50);
+  --secondary: --alpha(var(--color-black) / 4%);
+  --secondary-foreground: var(--color-zinc-800);
+
+  /* Muted / Accent */
+  --muted: --alpha(var(--color-black) / 4%);
+  --muted-foreground: color-mix(in srgb, var(--color-zinc-500) 90%, var(--color-black));
+  --accent: --alpha(var(--color-black) / 4%);
+  --accent-foreground: var(--color-zinc-800);
+
+  /* Estados */
+  --destructive: var(--color-red-500);
+
+  /* Inputs / Bordas */
+  --border: --alpha(var(--color-black) / 12%);
+  --ring: var(--color-zinc-400);
+
+  /* Sidebar (default = segue a paleta) */
+  --sidebar: var(--cards);
+  --sidebar-foreground: var(--text);
+  --sidebar-primary: var(--botoes);
+  --sidebar-primary-foreground: var(--background);
+  --sidebar-accent: var(--destaques);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--bordas);
+  --sidebar-ring: var(--hover);
+  --destructive-foreground: var(--color-red-700);
+  --info: var(--color-blue-500);
+  --info-foreground: var(--color-blue-700);
+  --success: var(--color-emerald-500);
+  --success-foreground: var(--color-emerald-700);
+  --warning: var(--color-amber-500);
+  --warning-foreground: var(--color-amber-700);
+  --background: var(--color-white);
+  --foreground: var(--color-zinc-800);
+  --input: --alpha(var(--color-black) / 12%);
+}
+
+/* ======================================================
+   RESET & BASE GLOBAL
+====================================================== */
+* {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+}
+
+/* Tipografia */
+h1,
+h2,
+h3 {
+  font-family: "Playfair Display", serif;
+  color: var(--titulo);
+}
+
+:not(h1, h2, h3) {
+  font-family: "Libre Baskerville", serif;
+}
+
+/* Scroll */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* ======================================================
+   TEMA INLINE (MAPEAMENTO PARA TAILWIND)
+====================================================== */
+@theme inline {
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --animate-skeleton: skeleton 2s -1s infinite linear;
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning: var(--warning);
+  --color-success-foreground: var(--success-foreground);
+  --color-success: var(--success);
+  --color-info-foreground: var(--info-foreground);
+  --color-info: var(--info);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-ring: var(--ring);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-input: var(--input);
+  --color-foreground: var(--foreground);
+  --color-destructive: var(--destructive);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-background: var(--background);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  @keyframes skeleton {
+  to {
+    background-position: -200% 0;
+    }
+  }
+}
+
+.dark {
+  --destructive-foreground: var(--color-red-400);
+  --info: var(--color-blue-500);
+  --info-foreground: var(--color-blue-400);
+  --success: var(--color-emerald-500);
+  --success-foreground: var(--color-emerald-400);
+  --warning: var(--color-amber-500);
+  --warning-foreground: var(--color-amber-400);
+  --accent: --alpha(var(--color-white) / 6%);
+  --accent-foreground: var(--color-zinc-200);
+  --background: color-mix(in srgb, var(--color-zinc-950) 98%, var(--color-white));
+  --border: --alpha(var(--color-white) / 12%);
+  --card: color-mix(in srgb, var(--background) 98%, var(--color-white));
+  --card-foreground: var(--color-zinc-200);
+  --destructive: var(--color-red-500);
+  --foreground: var(--color-zinc-200);
+  --input: --alpha(var(--color-white) / 12%);
+  --muted: --alpha(var(--color-white) / 6%);
+  --muted-foreground: color-mix(in srgb, var(--color-zinc-500) 90%, var(--color-white));
+  --popover: color-mix(in srgb, var(--background) 96%, var(--color-white));
+  --popover-foreground: var(--color-zinc-200);
+  --primary: var(--color-zinc-200);
+  --primary-foreground: var(--color-zinc-800);
+  --ring: var(--color-zinc-500);
+  --secondary: --alpha(var(--color-white) / 6%);
+  --secondary-foreground: var(--color-zinc-200);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
