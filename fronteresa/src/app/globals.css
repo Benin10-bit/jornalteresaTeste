@@ -31,40 +31,73 @@
   --shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-* {
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
-  scroll-behavior: smooth;
-}
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
 
-body {
-  background-color: var(--background);
-  color: var(--text);
-}
+    * {
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+      scroll-behavior: smooth;
+    }
 
-/* Tipografia */
-h1,
-h2,
-h3 {
-  font-family: "Playfair Display", serif;
-  color: var(--titulo);
-}
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
 
-:not(h1, h2, h3) {
-  font-family: "Libre Baskerville", serif;
-}
+    body {
+      background-color: var(--background);
+      color: var(--text);
+    }
 
-/* Scroll */
-::-webkit-scrollbar {
-  display: none;
-}
+    /* Tipografia */
+    h1,
+    h2,
+    h3 {
+      font-family: "Playfair Display", serif;
+      color: var(--titulo);
+    }
+
+    :not(h1, h2, h3) {
+      font-family: "Libre Baskerville", serif;
+    }
+
+    /* Scroll */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Toast animations (used by react-hot-toast custom toasts) */
+    @keyframes toast-in {
+      from {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes toast-out {
+      from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.98);
+      }
+    }
+
+    .animate-enter {
+      animation: toast-in 240ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+
+    .animate-leave {
+      animation: toast-out 120ms cubic-bezier(0.4, 0.0, 1, 1) both;
+    }

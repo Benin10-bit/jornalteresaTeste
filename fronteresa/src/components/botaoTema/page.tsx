@@ -7,14 +7,13 @@ type Tema = "claro" | "escuro";
 export default function BotaoTema() {
   const [tema, setTema] = useState<Tema>(() => {
     if (typeof document === "undefined") return "claro";
-    const html = document.documentElement;
-    return (html.getAttribute("data-tema") as Tema) || "claro";
+    const saved = localStorage.getItem("tema");
+    return saved === "escuro" ? "escuro" : "claro";
   });
-
   // 🔹 Aplica o tema sempre que mudar
   useEffect(() => {
-    document.documentElement.setAttribute("data-tema", tema);
     localStorage.setItem("tema", tema);
+    document.documentElement.setAttribute("data-tema", tema);
   }, [tema]);
 
   const alternarTema = () => {

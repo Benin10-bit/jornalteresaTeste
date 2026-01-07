@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import {Toaster} from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Jornal Teresa",
@@ -13,9 +14,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html data-tema="claro" lang="pt-br">
+    <html data-tema="escuro" lang="pt-br">
       <body>
         {children}
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+          toastOptions={{
+            duration: 4000,
+          }}
+        />
       </body>
     </html>
   );

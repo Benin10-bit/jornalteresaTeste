@@ -159,7 +159,7 @@ function SignupForm() {
             <span className="w-1/5 border-b border-(--bordas)" />
             <a
               href="#"
-              className="text-xs text-(--links) hover:underline"
+              className="text-[15px] text-(--links) hover:underline"
             >
               Tem uma conta? Entre
             </a>

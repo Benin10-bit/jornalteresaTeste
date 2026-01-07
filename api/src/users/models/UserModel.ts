@@ -22,7 +22,7 @@ export default class UserModel {
       if (error instanceof Error) {
         throw ApiError.internal(error.message);
       }
-
+      console.log(error);
       throw ApiError.internal("Unknown error");
     }
   }
@@ -39,7 +39,7 @@ export default class UserModel {
       if (error instanceof ApiError) {
         throw ApiError.internal(error.message);
       }
-
+      console.log(error);
       throw ApiError.internal("Unknown error");
     }
   }

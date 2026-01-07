@@ -33,6 +33,7 @@ export default class UserService {
         throw ApiError.internal(error.message);
       }
 
+      console.log(error);
       throw ApiError.internal("Unknown error");
     }
   }
@@ -63,7 +64,7 @@ export default class UserService {
       if (error instanceof Error) {
         throw ApiError.internal(error.message);
       }
-
+      console.log(error);
       throw ApiError.internal("Unknown error");
     }
   }

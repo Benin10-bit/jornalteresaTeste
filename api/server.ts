@@ -15,7 +15,7 @@ dotenv.config();
 
 server.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:3001",
     credentials: true,
     methods: ["GET", "DELETE", "POST", "OPTIONS", "PUT"],
   })
