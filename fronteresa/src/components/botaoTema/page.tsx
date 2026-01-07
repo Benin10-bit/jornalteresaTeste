@@ -1,13 +1,24 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 type Tema = "claro" | "escuro";
 
-type BotaoTemaProps = {
-  tema: Tema;
-  setTema: React.Dispatch<React.SetStateAction<Tema>>;
-};
+export default function BotaoTema() {
+  const [tema, setTema] = useState<Tema>(() => {
+    if (typeof document === "undefined") return "claro";
+    const html = document.documentElement;
+    return (html.getAttribute("data-tema") as Tema) || "claro";
+  });
 
-export default function BotaoTema({ tema, setTema }: BotaoTemaProps) {
+  // 🔹 Aplica o tema sempre que mudar
+  useEffect(() => {
+    document.documentElement.setAttribute("data-tema", tema);
+    localStorage.setItem("tema", tema);
+  }, [tema]);
+
   const alternarTema = () => {
-    setTema(prev => (prev === "claro" ? "escuro" : "claro"));
+    setTema((prev) => (prev === "claro" ? "escuro" : "claro"));
   };
 
   return (
@@ -23,10 +34,10 @@ export default function BotaoTema({ tema, setTema }: BotaoTemaProps) {
         hover:opacity-70
       "
     >
-      <span className="text-[var(--text)] select-none">tema:</span>
+      <span className="text-(--text) select-none">tema:</span>
 
       <svg
-        className="w-6 h-6 text-[var(--text)] transition-transform duration-300"
+        className="w-6 h-6 text-(--text) transition-transform duration-300"
         viewBox="0 0 24 24"
         aria-hidden="true"
       >
