@@ -12,7 +12,7 @@ const REDIRECT_WHEN_NOT_AUTHENTICATED = "/sign-in";
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.pathname;
   const publicRoute = publicRoutes.find((route) => route.route == url);
-  const token = request.cookies.get("token");
+  const token = request.cookies.get("auth_token");
 
   if (!token && !publicRoute) {
     const url = request.nextUrl.clone();

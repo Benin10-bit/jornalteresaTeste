@@ -1,23 +1,12 @@
 "use client";
 
-import { loginAction } from "@/actions/LoginActions/loginActions";
-import { toastError, toastSuccess } from "@/lib/toast";
+import useLoginForm from "@/hooks/useLoginForm";
 import React from "react";
-import toast from "react-hot-toast";
-
+import Spinner from "../Spinner/page";
+import Link from "next/link";
 
 function LoginForm() {
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    try{
-      await loginAction(formData);
-      toastSuccess('Login realizado com sucesso!');
-    } catch (error) {
-      toastError('Falha ao realizar login. Verifique suas credênciais.');
-    }
-  }
+  const { submit, loading } = useLoginForm();
 
   return (
     <div
@@ -31,39 +20,44 @@ function LoginForm() {
         <p className="text-lg text-(--text)">Insira as credênciais abaixo.</p>
       </div>
 
-          <form onSubmit={handleSubmit} className="w-full mt-8 space-y-6">
-    
-            <div>
-            <input
-              className="
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          submit(new FormData(e.currentTarget));
+        }}
+        className="w-full mt-8 space-y-6"
+      >
+        <div>
+          <input
+            className="
                 outline-none border-2 border-(--bordas) rounded-lg
                 px-4 py-3 w-full text-lg
                 bg-(--input) text-(--text)
                 focus:border-(--links)
               "
-              placeholder="Email"
-              id="email"
-              name="email"
-              type="email"
-            />
-                    </div>
-            
-                    <div>
-            <input
-              className="
+            placeholder="Email"
+            id="email"
+            name="email"
+            type="email"
+          />
+        </div>
+
+        <div>
+          <input
+            className="
                 outline-none border-2 border-(--bordas) rounded-lg
                 px-4 py-3 w-full text-lg
                 bg-(--input) text-(--text)
                 focus:border-(--links)
               "
-              placeholder="Senha"
-              id="password"
-              name="password"
-              type="password"
-            />
-                    </div>
-            
-             {/*        <div className="flex items-center justify-between text-base">
+            placeholder="Senha"
+            id="password"
+            name="password"
+            type="password"
+          />
+        </div>
+
+        {/*        <div className="flex items-center justify-between text-base">
             <div className="flex items-center">
               <input
                 className="mr-3 w-5 h-5 accent-(--botoes)"
@@ -80,36 +74,49 @@ function LoginForm() {
               Esqueceu a senha
             </a>
                     </div> */}
-            
-                    <button
-            className="
-              w-full py-3 rounded-lg text-lg font-medium
-              bg-(--botoes) text-(--background)
-              hover:bg-(--hover)
-              ring-2 ring-(--bordas)
-              transition-colors
-              cursor-pointer
-            "
-            id="login"
-            name="login"
-            type="submit"
-                    >
-            Entrar
-                    </button>
-            
-                    <div className="flex items-center justify-between mt-4">
-              <span className="w-1/5 border-b border-(--bordas)" />
-              <a
-                href="#"
-                className="text-md text-(--links) hover:underline"
-              >
-                Tem uma conta? Entre
-              </a>
-              <span className="w-1/5 border-b border-(--bordas)" />
-            </div>
-          </form>
+
+        <button
+  className={`
+    relative
+    w-full py-3 rounded-lg text-lg font-medium
+    bg-(--botoes) text-(--background)
+    hover:bg-(--hover)
+    ring-2 ring-(--bordas)
+    transition-colors
+    disabled:opacity-60 disabled:cursor-not-allowed
+  `}
+  id="login"
+  name="login"
+  type="submit"
+  disabled={loading}
+  aria-busy={loading}
+  aria-disabled={loading}
+>
+  <span className={loading ? "opacity-0" : "opacity-100"}>
+    Entrar
+  </span>
+
+  {loading && (
+    <span
+      role="status"
+      aria-live="polite"
+      className="absolute inset-0 flex items-center justify-center"
+    >
+      <Spinner />
+      <span className="sr-only">Carregando...</span>
+    </span>
+  )}
+</button>
+
+        <div className="flex items-center justify-between mt-4">
+          <span className="w-1/5 border-b border-(--bordas)" />
+          <Link href="/sign-up" className="text-md text-(--links) hover:underline">
+            Não tem uma conta? Crie uma!
+          </Link>
+          <span className="w-1/5 border-b border-(--bordas)" />
         </div>
-      
+      </form>
+    </div>
   );
 }
 
