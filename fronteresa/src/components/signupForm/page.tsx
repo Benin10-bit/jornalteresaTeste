@@ -1,8 +1,11 @@
 "use client";
 
+import { useRegisterForm } from "@/hooks/useRegisterForm";
 import Link from "next/link";
+import Spinner from "../Spinner/page";
 
 function SignupForm() {
+  const { submit, loading } = useRegisterForm();
   return (
     <div
       className="
@@ -15,7 +18,16 @@ function SignupForm() {
         <p className="text-lg text-(--text)">Crie sua conta abaixo.</p>
       </div>
 
-      <form className="w-full mt-8 space-y-6">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          submit(new FormData(e.currentTarget));
+          setTimeout(() => {
+            window.location.href = "/sign-in";
+          }, 5000);
+        }}
+        className="w-full mt-8 space-y-6"
+      >
         {/* Nome e Sobrenome */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
@@ -154,23 +166,45 @@ function SignupForm() {
 
         {/* Botão de Registro */}
         <button
-          className="
+          className={`
             relative
             w-full py-3 rounded-lg text-lg font-medium
             bg-(--botoes) text-(--background)
             hover:bg-(--hover)
             ring-2 ring-(--bordas)
             transition-colors
-          "
+            disabled:opacity-60 disabled:cursor-not-allowed
+          `}
+          id="login"
+          name="login"
           type="submit"
+          disabled={loading}
+          aria-busy={loading}
+          aria-disabled={loading}
         >
-          Registrar
+          <span className={loading ? "opacity-0" : "opacity-100"}>
+            Registrar
+          </span>
+
+          {loading && (
+            <span
+              role="status"
+              aria-live="polite"
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <Spinner />
+              <span className="sr-only">Carregando...</span>
+            </span>
+          )}
         </button>
 
         {/* Footer */}
         <div className="flex items-center justify-between mt-4">
           <span className="w-1/5 border-b border-(--bordas)" />
-          <Link href="/sign-in" className="text-md text-(--links) hover:underline">
+          <Link
+            href="/sign-in"
+            className="text-md text-(--links) hover:underline"
+          >
             Já tem uma conta? Entre
           </Link>
           <span className="w-1/5 border-b border-(--bordas)" />

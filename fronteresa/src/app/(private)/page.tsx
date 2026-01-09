@@ -1,9 +1,10 @@
 "use cache";
 
+import { API_MAIN_ROUTE } from "@/constants/apiRoute";
 import { cacheLife } from "next/cache";
 
 async function handleRequest() {
-  const res = await fetch("http://localhost:1992/show-news", {
+  const res = await fetch(API_MAIN_ROUTE + "/news/show-news", {
     cache: "force-cache",
   });
 

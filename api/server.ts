@@ -15,7 +15,7 @@ dotenv.config();
 
 server.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "http://localhost:3001", "http://localhost:3002"],
     credentials: true,
     methods: ["GET", "DELETE", "POST", "OPTIONS", "PUT"],
   })
@@ -28,10 +28,6 @@ server.use(newsRouter);
 server.use(userRouter);
 server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 server.use(meRouter);
-
-server.get("/", (req, res) => {
-  res.send("sex");
-});
 
 server.use(ExceptionHandler);
 

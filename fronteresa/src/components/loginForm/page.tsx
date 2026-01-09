@@ -4,6 +4,7 @@ import useLoginForm from "@/hooks/useLoginForm";
 import React from "react";
 import Spinner from "../Spinner/page";
 import Link from "next/link";
+import { delayedReload } from "@/types/delayedReload";
 
 function LoginForm() {
   const { submit, loading } = useLoginForm();
@@ -24,6 +25,7 @@ function LoginForm() {
         onSubmit={(e) => {
           e.preventDefault();
           submit(new FormData(e.currentTarget));
+          delayedReload();
         }}
         className="w-full mt-8 space-y-6"
       >
@@ -57,26 +59,20 @@ function LoginForm() {
           />
         </div>
 
-        {/*        <div className="flex items-center justify-between text-base">
-            <div className="flex items-center">
-              <input
-                className="mr-3 w-5 h-5 accent-(--botoes)"
-                id="remember"
-                name="remember"
-                type="checkbox"
-              />
-              <span className="text-(--text)">Remember me</span>
-            </div>
-            <a
-              className="text-(--links) font-medium hover:underline"
-              href="#"
-            >
-              Esqueceu a senha
-            </a>
-                    </div> */}
+        <div className="flex items-center justify-between text-base">
+          <div className="flex items-center">
+            <input
+              className="mr-3 w-5 h-5 accent-(--botoes)"
+              id="remember"
+              name="remember"
+              type="checkbox"
+            />
+            <span className="text-(--text)">Remember me</span>
+          </div>
+        </div>
 
         <button
-  className={`
+          className={`
     relative
     w-full py-3 rounded-lg text-lg font-medium
     bg-(--botoes) text-(--background)
@@ -85,32 +81,33 @@ function LoginForm() {
     transition-colors
     disabled:opacity-60 disabled:cursor-not-allowed
   `}
-  id="login"
-  name="login"
-  type="submit"
-  disabled={loading}
-  aria-busy={loading}
-  aria-disabled={loading}
->
-  <span className={loading ? "opacity-0" : "opacity-100"}>
-    Entrar
-  </span>
+          id="login"
+          name="login"
+          type="submit"
+          disabled={loading}
+          aria-busy={loading}
+          aria-disabled={loading}
+        >
+          <span className={loading ? "opacity-0" : "opacity-100"}>Entrar</span>
 
-  {loading && (
-    <span
-      role="status"
-      aria-live="polite"
-      className="absolute inset-0 flex items-center justify-center"
-    >
-      <Spinner />
-      <span className="sr-only">Carregando...</span>
-    </span>
-  )}
-</button>
+          {loading && (
+            <span
+              role="status"
+              aria-live="polite"
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <Spinner />
+              <span className="sr-only">Carregando...</span>
+            </span>
+          )}
+        </button>
 
         <div className="flex items-center justify-between mt-4">
           <span className="w-1/5 border-b border-(--bordas)" />
-          <Link href="/sign-up" className="text-md text-(--links) hover:underline">
+          <Link
+            href="/sign-up"
+            className="text-[15px] text-(--links) hover:underline"
+          >
             Não tem uma conta? Crie uma!
           </Link>
           <span className="w-1/5 border-b border-(--bordas)" />

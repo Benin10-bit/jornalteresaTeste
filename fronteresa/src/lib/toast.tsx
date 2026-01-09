@@ -127,8 +127,8 @@ class ToastManager {
         display: flex;
         align-items: center;
         gap: 12px;
-        min-width: 300px;
-        max-width: 450px;
+        min-width: 50rem;
+        max-width: 50rem;
         padding: 14px 18px;
         border: 2px solid var(--bordas);
         border-radius: 12px;
@@ -314,17 +314,17 @@ function getToast(): ToastManager {
 
 // Funções auxiliares para compatibilidade
 export function toastSuccess(message: string, duration?: number): void {
-  getToast()?.success(message, { duration });
+  getToast()?.success(message, { duration, position: 'top-center' });
 }
 
 export function toastError(message: string, duration?: number): void {
-  getToast()?.error(message, { duration });
+  getToast()?.error(message, { duration, position: 'top-center' });
 }
 
 export function toastWarning(message: string, duration?: number): void {
-  getToast()?.warning(message, { duration });
+  getToast()?.warning(message, { duration, position: 'top-center' });
 }
 
 export function toastInfo(message: string, duration?: number): void {
-  getToast()?.info(message, { duration });
+  getToast()?.info(message, { duration, position: 'top-center' });
 }

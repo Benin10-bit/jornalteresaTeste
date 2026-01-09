@@ -8,6 +8,12 @@ import type User from "./entities/User.js";
 export default class UserService {
   public static async registerUser(data: RequestUserRegisterDTO) {
     try {
+      const user = await UserModel.findUserByEmail(data.email);
+
+      if (user){
+        throw ApiError.badRequest("Já existe um usuário com este email")
+      }
+
       const password_Hash = bcrypt.hashSync(data.password, 10);
       const birthDate = new Date(data.birthDate);
 
@@ -22,8 +28,12 @@ export default class UserService {
         birthDate: birthDate,
       });
 
-      return { id: newUser.id, email: newUser.email, firstName: newUser.firstName, lastName: newUser.lastName };
-
+      return {
+        id: newUser.id,
+        email: newUser.email,
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+      };
     } catch (error) {
       if (error instanceof ApiError) {
         throw error; // mantém status e mensagem

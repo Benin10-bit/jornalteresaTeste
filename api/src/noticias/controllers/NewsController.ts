@@ -54,7 +54,7 @@ export default class NewsController {
         files
       );
 
-      res.status(201).json(news);
+      res.status(201).json({ ok: "notícia criada com sucesso", body: news });
     } catch (error) {
       return next(error);
     }
@@ -77,7 +77,7 @@ export default class NewsController {
         body.author,
         body.newstype
       );
-      res.status(200).json(news);
+      res.status(200).json({ ok: "notícia editada com sucesso", body: news });
     } catch (error) {
       return next(error);
     }
@@ -92,7 +92,7 @@ export default class NewsController {
 
     try {
       const news = await NewsService.likenews(id?.toString() || "");
-      res.status(200).json(news);
+      res.status(200).json({ ok: "noticia curtida com sucesso", body: news });
     } catch (error) {
       return next(error);
     }
@@ -107,7 +107,7 @@ export default class NewsController {
 
     try {
       await NewsService.deleteNews(id?.toString() || "");
-      res.status(200).json({ message: "Notícia deletada com sucesso" });
+      res.status(200).json({ ok: "Notícia deletada com sucesso" });
     } catch (error) {
       return next(error);
     }

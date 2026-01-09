@@ -24,7 +24,7 @@ export default function BotaoTema() {
     <button
       id="toggle-tema"
       type="button"
-      aria-pressed={tema === "escuro"}
+      aria-pressed={tema !== "escuro"}
       aria-label="Alternar tema"
       onClick={alternarTema}
       className="

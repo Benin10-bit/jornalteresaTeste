@@ -11,17 +11,15 @@ export default class UserController {
     try {
       const body: RequestUserRegisterDTO = req.body;
       const result = await UserService.registerUser(body);
-      return res.status(201).json(result);
+      return res
+        .status(201)
+        .json({ ok: "Usuário registrado com sucesso", body: result });
     } catch (error) {
       return next(error); // 🔥 ESSENCIAL
     }
   }
 
-  public static async login(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
+  public static async login(req: Request, res: Response, next: NextFunction) {
     try {
       const { email, password } = req.body;
       const result = await UserService.loginUser(email, password);
@@ -32,7 +30,7 @@ export default class UserController {
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       });
 
-      return res.status(200).json({ message: "Login successful" });
+      return res.status(200).json({ ok: "Login realizado com sucesso" });
     } catch (error) {
       return next(error);
     }

@@ -1,5 +1,6 @@
 import express from "express";
 import UserController from "../controllers/UserController.js";
+import { validatePassword } from "../../middlewares/validatePassword.js";
 
 export const userRouter = express.Router();
 
@@ -39,7 +40,7 @@ export const userRouter = express.Router();
  *       400:
  *         description: Dados inválidos ou usuário já existe
  */
-userRouter.post("/user/register", UserController.register);
+userRouter.post("/user/register", validatePassword ,UserController.register);
 
 /**
  * @swagger

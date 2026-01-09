@@ -13,7 +13,7 @@ export function useLoginForm() {
     try {
       setLoading(true);
       await loginAction(formData);
-      toastSuccess("Login realizado com sucesso");
+      toastSuccess("Login realizado com sucesso. Redirecionando...");
     } catch(err) {
       toastError("Email ou senha inválidos " + (err instanceof Error ? `(${err.message})` : ""));
     } finally {
