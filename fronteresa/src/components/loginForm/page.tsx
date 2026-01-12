@@ -2,9 +2,9 @@
 
 import useLoginForm from "@/hooks/useLoginForm";
 import React from "react";
-import Spinner from "../Spinner/page";
+import Spinner from "../ui/Spinner/page";
 import Link from "next/link";
-import { delayedReload } from "@/types/delayedReload";
+import { delayedReload } from "@/lib/delayedReload";
 
 function LoginForm() {
   const { submit, loading } = useLoginForm();

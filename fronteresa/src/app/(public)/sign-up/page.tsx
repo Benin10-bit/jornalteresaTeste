@@ -1,4 +1,4 @@
-import BotaoTema from "@/components/botaoTema/page";
+import BotaoTema from "@/components/ui/botaoTema/page";
 import { SignupForm } from "@/components/signupForm/page";
 
 export default function Signin() {

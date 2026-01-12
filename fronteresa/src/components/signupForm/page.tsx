@@ -2,7 +2,7 @@
 
 import { useRegisterForm } from "@/hooks/useRegisterForm";
 import Link from "next/link";
-import Spinner from "../Spinner/page";
+import Spinner from "../ui/Spinner/page";
 
 function SignupForm() {
   const { submit, loading } = useRegisterForm();
