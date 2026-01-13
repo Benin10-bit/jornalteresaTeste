@@ -24,5 +24,5 @@ export const swaggerSpec = swaggerJsdoc({
     security: [{ bearerAuth: [] }],
   },
   apis: ["src/docs/schemas/**/*.ts",
-    "src/**/routes.ts",],
+    "src/**/routes/*.ts",],
 });
