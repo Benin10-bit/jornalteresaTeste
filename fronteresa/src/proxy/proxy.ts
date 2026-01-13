@@ -3,13 +3,13 @@ import { NextRequest, NextResponse } from "next/server";
 const publicRoutes = [
   { route: "/sign-in", whenAuthenticated: "redirect" },
   { route: "/sign-up", whenAuthenticated: "redirect" },
-  { route: "/catalog", whenAuthenticated: "next" },
+  { route: "/", whenAuthenticated: "next" },
 ] as const;
 
 
 const REDIRECT_WHEN_NOT_AUTHENTICATED = "/sign-in";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const url = request.nextUrl.pathname;
   const publicRoute = publicRoutes.find((route) => route.route == url);
   const token = request.cookies.get("auth_token");
