@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 const publicRoutes = [
   { route: "/sign-in", whenAuthenticated: "redirect" },
   { route: "/sign-up", whenAuthenticated: "redirect" },
-  { route: "/", whenAuthenticated: "next" },
+  { route: "/c", whenAuthenticated: "next" },
 ] as const;
 
 

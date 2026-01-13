@@ -1,5 +1,5 @@
 import LoadingGrid from "@/components/loadingGrid/page";
-import TestePage from "@/components/testepage/page";
+import TestePage from "@/components/content/page";
 import { Suspense } from "react";
 
 export default function NewsPage() {
