@@ -1,4 +1,3 @@
-import BotaoTema from "@/components/ui/botaoTema/page";
 import { SignupForm } from "@/components/signupForm/page";
 
 export default function Signin() {
@@ -7,7 +6,6 @@ export default function Signin() {
       <div className="mb-8">
         <SignupForm />
       </div>
-      <BotaoTema />
     </div>
   );
 }

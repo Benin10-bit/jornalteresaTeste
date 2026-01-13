@@ -3,15 +3,12 @@
 export function LoadingCard() {
   return (
     <div className="card animate-pulse">
+      <div className="card__shine" />
+      <div className="card__glow" />
 
       <div className="card__content">
-        {/* Badge */}
-        <div className="card__badge bg-(--titulo)">
-          &nbsp;
-        </div>
-
         {/* Imagem */}
-        <div className="card__image bg-(--foreground) flex items-center justify-center">
+        <div className="w-full h-35 rounded-md bg-(--foreground) flex items-center justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 @import "tailwindcss";
 
-:root[data-tema="claro"] {
+:root[data-tema="light"] {
   --background: #ebdabe;
   --foreground: #2e4030;
   --text: #2e4030;
@@ -16,7 +16,7 @@
   --shadow: 0 4px 8px rgba(75, 64, 53, 0.3);
 }
 
-:root[data-tema="escuro"] {
+:root[data-tema="dark"] {
   --background: #1f1f1a;
   --foreground: #d8d3c2;
   --text: #d8d3c2;
@@ -167,6 +167,7 @@ h3 {
 
   width: clamp(260px, 22vw, 300px);
   min-height: 300px;
+  max-height: 450px;
 
   background: var(--card-bg);
   border-radius: 24px;
@@ -286,9 +287,11 @@ h3 {
   opacity: 0.75;
   line-height: 1.4;
   transition: opacity 0.3s ease, transform 0.3s ease;
-    white-space: nowrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5; /* número de linhas */
+  line-clamp: 5;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* Footer */

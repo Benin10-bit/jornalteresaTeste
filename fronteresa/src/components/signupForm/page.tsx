@@ -22,9 +22,6 @@ function SignupForm() {
         onSubmit={(e) => {
           e.preventDefault();
           submit(new FormData(e.currentTarget));
-          setTimeout(() => {
-            window.location.href = "/sign-in";
-          }, 5000);
         }}
         className="w-full mt-8 space-y-6"
       >

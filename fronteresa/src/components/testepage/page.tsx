@@ -5,7 +5,7 @@ const fakeNews = [
   {
     type: "NEW",
     title: "Next.js 15 é anunciado",
-    desc: "A nova versão do Next.js traz melhorias significativas em performance, streaming e cache inteligente.",
+    desc: "A nova versão do Next.js traz melhorias significativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudacheicativas em performance, streaming e cxafasfasfasfafasasfafdfvgbh67ydrfx ugvlijdsfvçswjeidgflpowieujgoweiujgfwejighbwaljughaçsldjkghskdjdjuudache inteligente.",
     author: "Equipe Vercel",
     imgUrl: "https://images.unsplash.com/photo-1522199710521-72d69614c702",
     newsUrl: "/news/next-15",
@@ -29,7 +29,7 @@ const fakeNews = [
 ];
 
 export default async function TestePage() {
-    await delay(8000)
+    await delay(1000)
 
   return (
     <section className="flex flex-wrap gap-6 justify-center">

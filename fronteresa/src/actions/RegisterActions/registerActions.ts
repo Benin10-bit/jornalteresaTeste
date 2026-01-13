@@ -24,8 +24,10 @@ async function registerActions(formdata: FormData) {
     const data = await res.json();
     throw new Error("Cadastro Falhou: " + (data.message || res.statusText));
   }
+    setTimeout(() => {
+    window.location.href = "/sign-in";
+  }, 5000);
 
   return await res.json();
 }
-
 export { registerActions };
