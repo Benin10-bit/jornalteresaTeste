@@ -38,7 +38,7 @@ export default function CardNews({
 
         <div className="card__footer">
           {author && (
-            <span className="text-xs opacity-70">
+            <span className="text-xs max-w-28 opacity-70">
               {author}
             </span>
           )}

@@ -84,7 +84,7 @@ export default function FeaturedNews({
         .featured-news {
           position: relative;
           width: 100%;
-          height: 500px;
+          height: 700px;
           border-radius: 24px;
           overflow: hidden;
           background: var(--cards);
@@ -161,7 +161,7 @@ export default function FeaturedNews({
           position: absolute;
           inset: 0;
           background-size: cover;
-          background-position: center;
+          background-position: center 25%;
           transition: transform 0.6s ease;
         }
 

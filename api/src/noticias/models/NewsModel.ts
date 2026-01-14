@@ -6,7 +6,7 @@ export default class NewsModel {
   public static async getAllNews() {
   return prisma.noticias.findMany({
     orderBy: {
-    created_at: "desc",
+    created_at: "asc",
   },
     include: {
       arquivos: true, // ou files — depende do nome no schema.prisma
