@@ -1,12 +1,12 @@
 "use client";
 
-import CardNews from "@/components/ui/CardNews/page";
+import CardNews from "@/components/ui/cards/CardNews/page";
 import { News } from "@/types/NewsType";
-import FeaturedNews from "../ui/featuredNews/page";
+import FeaturedNews from "../ui/cards/featuredNews/page";
 
 export default function NewsClient({ initialNews }: { initialNews: News[] }) {
   return (
-    <section className="flex flex-wrap gap-6 justify-center">
+    <section className="flex flex-wrap gap-2 justify-center">
       {initialNews.map((noticia) =>
         noticia === initialNews[0] ? (
           <FeaturedNews

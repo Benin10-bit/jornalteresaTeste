@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 export default function NewsPage() {
   return (
-    <Suspense fallback={<LoadingGrid quantity={4} />}>
+    <Suspense fallback={<LoadingGrid quantity={6} />}>
       <TestePage />
     </Suspense>
   );

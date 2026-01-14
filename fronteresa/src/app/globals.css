@@ -174,14 +174,12 @@ h3 {
   position: relative;
   overflow: hidden;
 
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.5s ease,
-              border-color 0.4s ease;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease,
+    border-color 0.4s ease;
 
   box-shadow: var(--card-shadow);
   border: 1px solid var(--bordas);
 }
-
 
 /* Glow */
 .card__glow {
@@ -228,16 +226,10 @@ h3 {
 .card__image {
   width: calc(100% + clamp(2.4rem, 5vw, 3.2rem));
   aspect-ratio: 16 / 9;
-  margin:
-    calc(-1 * clamp(1.2rem, 2.5vw, 1.6rem))
-    calc(-1 * clamp(1.2rem, 2.5vw, 1.6rem))
-    0;
+  margin: calc(-1 * clamp(1.2rem, 2.5vw, 1.6rem))
+    calc(-1 * clamp(1.2rem, 2.5vw, 1.6rem)) 0;
 
-  background: linear-gradient(
-    45deg,
-    var(--destaques),
-    var(--links)
-  );
+  background: linear-gradient(45deg, var(--destaques), var(--links));
 
   border-radius: 20px 20px 14px 14px;
   position: relative;
@@ -250,8 +242,7 @@ h3 {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(
+  background: radial-gradient(
       circle at 30% 30%,
       rgba(255, 255, 255, 0.04),
       transparent 48%
@@ -327,8 +318,7 @@ h3 {
 /* Hover */
 .card:hover {
   transform: translateY(-12px);
-  box-shadow:
-    0 25px 35px -10px rgba(0, 0, 0, 0.2),
+  box-shadow: 0 25px 35px -10px rgba(0, 0, 0, 0.2),
     0 12px 12px -6px rgba(0, 0, 0, 0.08);
   border-color: var(--hover);
 }
@@ -401,4 +391,34 @@ h3 {
   100% {
     transform: scale(1);
   }
+}
+
+.featuredEffects:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 35px -10px rgba(0, 0, 0, 0.2),
+    0 12px 12px -6px rgba(0, 0, 0, 0.08);
+  border-color: var(--hover);
+}
+
+.featuredEffects:hover .card__shine {
+  opacity: 0.6;
+  animation: shine 3s infinite;
+}
+
+.featuredEffects:hover .card__glow {
+  opacity: 0.1;
+}
+
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
+.animate-shine {
+  animation: shine 3s linear infinite;
 }

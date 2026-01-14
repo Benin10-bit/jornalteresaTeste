@@ -60,7 +60,7 @@ export default function FeaturedNews({
               </div>
             )}
 
-            <Link href={newsUrl} className="featured-news__button">
+            <Link href={newsUrl} className="featured-news__button text-(--destaques)">
               <span>Ler matéria completa</span>
               <svg 
                 className="featured-news__button-icon" 
@@ -272,8 +272,8 @@ export default function FeaturedNews({
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          background: var(--cards);
-          color: var(--botoes);
+          background: white;
+          color: white;
           padding: 12px 24px;
           border-radius: 12px;
           font-weight: 600;
@@ -284,13 +284,9 @@ export default function FeaturedNews({
         }
 
         .featured-news__button:hover {
-          background: var(--botoes);
-          color: var(--cards);
+          background: var(--destaques);
+          color: var(--destaques);
           transform: translateX(4px);
-        }
-
-        [data-tema="light"] .featured-news__button:hover {
-          background: var(--hover);
         }
 
         .featured-news__button-icon {

@@ -2,7 +2,7 @@
 
 import useLoginForm from "@/hooks/useLoginForm";
 import React from "react";
-import Spinner from "../ui/Spinner/page";
+import Spinner from "../ui/loaders/Spinner/page";
 import Link from "next/link";
 import { delayedReload } from "@/lib/delayedReload";
 
