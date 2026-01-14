@@ -4,8 +4,16 @@ import type Files from "../services/entities/Files.js";
 
 export default class NewsModel {
   public static async getAllNews() {
-    return prisma.noticias.findMany();
-  }
+  return prisma.noticias.findMany({
+    orderBy: {
+    created_at: "desc",
+  },
+    include: {
+      arquivos: true, // ou files — depende do nome no schema.prisma
+    },
+  });
+}
+
 
   public static async getById(id: string) {
     try {

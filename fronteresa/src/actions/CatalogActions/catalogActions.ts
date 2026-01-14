@@ -1,6 +1,14 @@
 import { API_MAIN_ROUTE } from "@/constants/apiRoute";
+import { cacheLife } from "next/cache";
 
 async function catalogActions() {
+
+  //Pode comentar o use cache e cache life em ambiente de teste
+
+  "use cache"
+
+  cacheLife("days")
+
   const response = await fetch(API_MAIN_ROUTE + "/news/show-news");
 
   if (!response.ok){

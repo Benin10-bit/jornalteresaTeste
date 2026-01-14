@@ -221,7 +221,7 @@ export default function FeaturedNews({
           display: flex;
           flex-direction: column;
           gap: 12px;
-          color: var(--text);
+          color: var(--destaques);
         }
 
         .featured-news__title {
@@ -230,7 +230,7 @@ export default function FeaturedNews({
           line-height: 1.2;
           margin: 0;
           text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-          color: var(--text);
+          color: var(--destaques);
         }
 
         .featured-news__description {
@@ -243,7 +243,7 @@ export default function FeaturedNews({
           -webkit-box-orient: vertical;
           overflow: hidden;
           text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-          color: var(--text);
+          color: var(--destaques);
         }
 
         .featured-news__footer {
@@ -258,7 +258,7 @@ export default function FeaturedNews({
           display: flex;
           align-items: center;
           gap: 8px;
-          color: var(--text);
+          color: var(--destaques);
           font-size: 14px;
           opacity: 0.9;
         }
