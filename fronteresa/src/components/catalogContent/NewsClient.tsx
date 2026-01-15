@@ -1,8 +1,8 @@
 "use client";
 
 import CardNews from "@/components/ui/cards/CardNews/page";
-import { News } from "@/types/NewsType";
 import FeaturedNews from "../ui/cards/featuredNews/page";
+import { News } from "@/types/NewsType";
 
 export default function NewsClient({ initialNews }: { initialNews: News[] }) {
   return (

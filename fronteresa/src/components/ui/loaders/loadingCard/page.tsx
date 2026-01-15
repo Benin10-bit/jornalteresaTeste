@@ -1,5 +1,7 @@
 "use client";
 
+import Spinner from "../Spinner/page";
+
 export function LoadingCard() {
   return (
     <div className="card animate-pulse">
@@ -9,18 +11,7 @@ export function LoadingCard() {
       <div className="card__content">
         {/* Imagem */}
         <div className="w-full h-35 rounded-md bg-(--foreground) flex items-center justify-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            className="w-10 h-10 opacity-40 text-(--text)"
-          >
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-            <path d="M3 15l4-4 4 4 5-5 5 5" />
-            <line x1="3" y1="3" x2="21" y2="21" />
-          </svg>
+          <Spinner />
         </div>
 
         {/* Texto */}

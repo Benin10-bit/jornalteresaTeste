@@ -5,7 +5,7 @@ import Link from "next/link"
 
 export default function FeaturedNews({
   type = "destaque",
-  title,
+  title ,
   desc,
   author,
   imgUrl,
