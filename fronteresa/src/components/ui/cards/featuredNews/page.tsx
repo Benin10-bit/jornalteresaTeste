@@ -83,7 +83,7 @@ export default function FeaturedNews({
       <style jsx>{`
         .featured-news {
           position: relative;
-          width: 100%;
+          width: 96vw;
           height: 700px;
           border-radius: 24px;
           overflow: hidden;
