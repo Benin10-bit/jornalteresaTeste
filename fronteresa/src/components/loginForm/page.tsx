@@ -5,17 +5,26 @@ import Spinner from "../ui/loaders/Spinner/page";
 import Link from "next/link";
 import { delayedReload } from "@/lib/delayedReload";
 import Image from "next/image";
+import { useState } from "react";
+import { IconEye, IconEyeOff } from "@tabler/icons-react";
+import './login.css'
 
 function LoginForm() {
   const { submit, loading } = useLoginForm();
+  const [isShowingPassword, setIsShowingPassword] = useState<boolean>(false);
+
+  function toggleShowingPassword() {
+    setIsShowingPassword(!isShowingPassword);
+  }
+
   return (
     <div
-      className="
+      className=" login-form
         w-lg rounded-2xl shadow-(--shadow) h-auto p-10
         bg-(--cards) relative overflow-hidden
       "
     >
-      <div className="flex justify-center items-center space-y-2">
+      <div className="form-header flex justify-center items-center space-y-2">
         <div className="relative w-40 h-40">
           <Image
             src="/logo_teresa.png"
@@ -27,7 +36,7 @@ function LoginForm() {
         <hr className="border mr-4.5 rotate-90 w-10 border-(--bordas)" />
         <div>
           <h2 className="text-4xl font-medium text-(--titulo)">Entrar</h2>
-          <p className="text-lg text-(--text)">Insira as credênciais abaixo.</p>
+          <p className="text-lg text-(--text)">Insira as credenciais abaixo.</p>
         </div>
       </div>
 
@@ -40,6 +49,10 @@ function LoginForm() {
         className="w-full mt-8 space-y-6"
       >
         <div>
+          <label
+            htmlFor="email"
+            className="font-semibold text-sm text-(--titulo) pb-1 block"
+          >Email</label>
           <input
             className="
                 outline-none border-2 border-(--bordas) rounded-lg
@@ -55,29 +68,28 @@ function LoginForm() {
         </div>
 
         <div>
-          <input
-            className="
-                outline-none border-2 border-(--bordas) rounded-lg
+          <label
+            htmlFor="password"
+            className="font-semibold text-sm text-(--titulo) pb-1 block"
+          >
+            Senha
+          </label>
+          <div className="
+                password-input outline-none
+                border-2 border-(--bordas) rounded-lg
                 px-4 py-3 w-full text-lg
                 bg-(--input) text-(--text)
-                focus:border-(--links)
-              "
-            placeholder="Senha"
-            id="password"
-            name="password"
-            type="password"
-          />
-        </div>
-
-        <div className="flex items-center justify-between text-base">
-          <div className="flex items-center">
+                focus-within:border-(--links)">
             <input
-              className="mr-3 w-5 h-5 accent-(--botoes)"
-              id="remember"
-              name="remember"
-              type="checkbox"
+              id="password"
+              name="password"
+              className='outline-none max-w-full'
+              type={isShowingPassword ? 'text' : 'password'}
+              placeholder="Digite sua senha"
             />
-            <span className="text-(--text)">Remember me</span>
+            {
+              isShowingPassword ? <IconEye onClick={toggleShowingPassword}/> : <IconEyeOff onClick={toggleShowingPassword}/>
+            }
           </div>
         </div>
 
@@ -90,6 +102,7 @@ function LoginForm() {
     ring-2 ring-(--bordas)
     transition-colors
     disabled:opacity-60 disabled:cursor-not-allowed
+    cursor-pointer
   `}
           id="login"
           name="login"
@@ -116,7 +129,7 @@ function LoginForm() {
           <span className="w-1/5 border-b border-(--bordas)" />
           <Link
             href="/sign-up"
-            className="text-[15px] text-(--links) hover:underline"
+            className="text-[15px] text-(--links) hover:underline text-center"
           >
             Não tem uma conta? Crie uma!
           </Link>
