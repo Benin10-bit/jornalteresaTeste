@@ -1,10 +1,10 @@
 "use client";
 
 import useLoginForm from "@/hooks/useLoginForm";
-import React from "react";
 import Spinner from "../ui/loaders/Spinner/page";
 import Link from "next/link";
 import { delayedReload } from "@/lib/delayedReload";
+import Image from "next/image";
 
 function LoginForm() {
   const { submit, loading } = useLoginForm();
@@ -12,13 +12,19 @@ function LoginForm() {
   return (
     <div
       className="
-        w-md rounded-2xl shadow-(--shadow) h-auto p-10
+        w-lg rounded-2xl shadow-(--shadow) h-auto p-10
         bg-(--cards) relative overflow-hidden
       "
     >
-      <div className="flex flex-col justify-center items-center space-y-4">
-        <h2 className="text-4xl font-medium text-(--titulo)">Entrar</h2>
-        <p className="text-lg text-(--text)">Insira as credênciais abaixo.</p>
+      <div className="flex justify-center items-center space-y-2">
+        <div className="relative w-40 h-40">
+          <Image src={"/logo_teresa.png"} fill alt="logo teresa" />
+        </div>
+        <hr className="border mr-4.5 rotate-90 w-10 border-(--bordas)" />
+        <div>
+          <h2 className="text-4xl font-medium text-(--titulo)">Entrar</h2>
+          <p className="text-lg text-(--text)">Insira as credênciais abaixo.</p>
+        </div>
       </div>
 
       <form

@@ -3,6 +3,7 @@
 import { useRegisterForm } from "@/hooks/useRegisterForm";
 import Link from "next/link";
 import Spinner from "../ui/loaders/Spinner/page";
+import Image from "next/image";
 
 function SignupForm() {
   const { submit, loading } = useRegisterForm();
@@ -13,9 +14,15 @@ function SignupForm() {
         bg-(--cards) relative overflow-hidden
       "
     >
-      <div className="flex flex-col justify-center items-center space-y-4">
-        <h2 className="text-4xl font-medium text-(--titulo)">Registrar</h2>
-        <p className="text-lg text-(--text)">Crie sua conta abaixo.</p>
+      <div className="flex justify-center items-center space-y-4">
+        <div className="relative w-40 h-40">
+          <Image src={"/logo_teresa.png"} fill alt="logo teresa" />
+        </div>
+        <hr className="border mr-4.5 rotate-90 w-10 border-(--bordas)" />
+        <div>
+          <h2 className="text-4xl font-medium text-(--titulo)">Registrar</h2>
+          <p className="text-lg text-(--text)">Crie sua conta abaixo.</p>
+        </div>
       </div>
 
       <form
