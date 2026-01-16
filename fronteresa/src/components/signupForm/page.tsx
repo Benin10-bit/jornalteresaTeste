@@ -192,6 +192,7 @@ function SignupForm() {
             ring-2 ring-(--bordas)
             transition-colors
             disabled:opacity-60 disabled:cursor-not-allowed
+            cursor-pointer
           `}
           id="login"
           name="login"
