@@ -14,7 +14,6 @@ export default function CardNews({
 }: CardNewsProps) {
   return (
     <div className="card">
-      <div className="card__shine" />
       <div className="card__glow" />
 
       <div className="card__content">
