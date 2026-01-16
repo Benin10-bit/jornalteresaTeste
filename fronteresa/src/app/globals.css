@@ -159,13 +159,22 @@ h3 {
 }
 
 /* Card notícia */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 350px);
+  gap: 1.5em;
+}
+
 .card {
   --card-bg: var(--cards);
   --card-accent: var(--botoes);
   --card-text: var(--text);
   --card-shadow: var(--shadow);
 
-  width: clamp(260px, 22vw, 300px);
+  flex-basis: 260px;
+  max-width: 520px;
+  flex-grow: 1;
   min-height: 300px;
   max-height: 450px;
 

@@ -6,7 +6,7 @@ import { News } from "@/types/NewsType";
 
 export default function NewsClient({ initialNews }: { initialNews: News[] }) {
   return (
-    <section className="flex flex-wrap gap-2 justify-center">
+    <section className="cards-container px-4 py-4">
       {initialNews.map((noticia) =>
         noticia === initialNews[0] ? (
           <FeaturedNews

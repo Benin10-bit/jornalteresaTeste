@@ -157,7 +157,7 @@ function SignupForm() {
             />
           </div>
 
-          <div>
+          <div className='gender-div'>
             <label
               htmlFor="gender"
               className="font-semibold text-sm text-(--titulo) pb-1 block"
@@ -167,14 +167,14 @@ function SignupForm() {
             <select
               id="gender"
               name="gender"
-              className="
+              className=" gender-select
                 outline-none border-2 border-(--bordas) rounded-lg
                 px-4 py-3 w-full text-lg
                 bg-(--input) text-(--text)
                 focus:border-(--links)
               "
             >
-              <option value="">Selecione</option>
+              <option value="" disabled selected>- Selecionar -</option>
               <option value="masculino">Masculino</option>
               <option value="feminino">Feminino</option>
               <option value="outro">Outro</option>

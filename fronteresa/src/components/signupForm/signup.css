@@ -19,6 +19,32 @@
     }
 }
 
+.gender-div {
+    position: relative;
+
+    &::after {
+        pointer-events: none;
+        content: '▼';
+        position: absolute;
+        bottom: 1.2em;
+        right: 1.6em;
+        z-index: 99;
+        font-size: 14px;
+        rotate: 0deg;
+        transition: rotate 200ms ease;
+        text-align: center;
+    }
+}
+
+.gender-div:has(.gender-select:active)::after {
+    rotate: 180deg;
+}
+
+.gender-select {
+    appearance: none;
+    cursor: pointer;
+}
+
 @media screen and (width <= 600px) {
     .sign-up-form {
         padding: 1.5em;
