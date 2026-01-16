@@ -114,8 +114,6 @@ class ToastManager {
     const style = document.createElement('style');
     style.id = 'toast-styles';
     style.textContent = `
-      @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
-
       .toast-container {
         position: fixed;
         z-index: 10000;
