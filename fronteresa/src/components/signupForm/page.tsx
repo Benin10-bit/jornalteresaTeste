@@ -1,12 +1,21 @@
 "use client";
 
+import { useState } from "react";
 import { useRegisterForm } from "@/hooks/useRegisterForm";
 import Link from "next/link";
 import Spinner from "../ui/loaders/Spinner/page";
 import Image from "next/image";
+import './signup.css'
+import { IconEyeOff, IconEye } from '@tabler/icons-react'
 
 function SignupForm() {
   const { submit, loading } = useRegisterForm();
+  const [isShowingPassword, setIsShowingPassword] = useState<boolean>(false);
+
+  function toggleShowingPassword() {
+    setIsShowingPassword(!isShowingPassword);
+  }
+
   return (
     <div
       className="
@@ -107,18 +116,23 @@ function SignupForm() {
           >
             Senha
           </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            className="
-              outline-none border-2 border-(--bordas) rounded-lg
-              px-4 py-3 w-full text-lg
-              bg-(--input) text-(--text)
-              focus:border-(--links)
-            "
-            placeholder="Digite sua senha"
-          />
+          <div className="
+                password-input outline-none
+                border-2 border-(--bordas) rounded-lg
+                px-4 py-3 w-full text-lg
+                bg-(--input) text-(--text)
+                focus-within:border-(--links)">
+            <input
+              id="password"
+              name="password"
+              className='outline-none max-w-full'
+              type={isShowingPassword ? 'text' : 'password'}
+              placeholder="Digite sua senha"
+            />
+            {
+              isShowingPassword ? <IconEye onClick={toggleShowingPassword}/> : <IconEyeOff onClick={toggleShowingPassword}/>
+            }
+          </div>
         </div>
 
         {/* Data de Nascimento e Gênero */}
