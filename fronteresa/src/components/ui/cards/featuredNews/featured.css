@@ -111,6 +111,7 @@
     opacity: 0.95;
     margin: 0;
     display: -webkit-box;
+    line-clamp: 3;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -172,11 +173,13 @@
     transform: translateX(4px);
 }
 
-@media (max-width: 768px) {
+@media screen and (width <= 1000px) {
     .featured-news {
-        height: 450px;
+        grid-column: 1 / -1;
     }
+}
 
+@media (max-width: 768px) {
     .featured-news__body {
         padding: 24px;
     }
@@ -187,6 +190,7 @@
 
     .featured-news__description {
         font-size: 14px;
+        line-clamp: 2;
         -webkit-line-clamp: 2;
     }
 

@@ -172,9 +172,7 @@ h3 {
   --card-text: var(--text);
   --card-shadow: var(--shadow);
 
-  flex-basis: 260px;
   max-width: 520px;
-  flex-grow: 1;
   min-height: 300px;
   max-height: 450px;
 
@@ -229,7 +227,7 @@ h3 {
   opacity: 0;
   transition: all 0.4s ease 0.1s;
   z-index: 3;
-  
+
   &:first-letter {
     text-transform: capitalize;
   }
@@ -401,4 +399,23 @@ h3 {
 
 .featuredEffects:hover .card__glow {
   opacity: 0.1;
+}
+
+@media (max-width: 1000px) {
+  .cards-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 250px);
+  }
+}
+
+@media (max-width: 450px) {
+  .cards-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
