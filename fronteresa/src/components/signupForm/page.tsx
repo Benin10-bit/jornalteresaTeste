@@ -18,12 +18,12 @@ function SignupForm() {
 
   return (
     <div
-      className="
+      className="sign-up-form
         w-160 rounded-2xl shadow-(--shadow) h-auto p-10
         bg-(--cards) relative overflow-hidden
       "
     >
-      <div className="flex justify-center items-center space-y-4">
+      <div className="form-header flex justify-center items-center space-y-4">
         <div className="relative w-40 h-40">
           <Image src={"/logo_teresa.png"} fill alt="logo teresa" />
         </div>
@@ -221,7 +221,7 @@ function SignupForm() {
           <span className="w-1/5 border-b border-(--bordas)" />
           <Link
             href="/sign-in"
-            className="text-md text-(--links) hover:underline"
+            className="text-md text-(--links) hover:underline text-center"
           >
             Já tem uma conta? Entre
           </Link>
