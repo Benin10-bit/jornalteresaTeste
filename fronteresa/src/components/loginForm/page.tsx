@@ -8,7 +8,6 @@ import Image from "next/image";
 
 function LoginForm() {
   const { submit, loading } = useLoginForm();
-
   return (
     <div
       className="
@@ -18,7 +17,12 @@ function LoginForm() {
     >
       <div className="flex justify-center items-center space-y-2">
         <div className="relative w-40 h-40">
-          <Image src={"/logo_teresa.png"} fill alt="logo teresa" />
+          <Image
+            src="/logo_teresa.png"
+            alt="Logo teresa"
+            fill
+            style={{ backgroundColor: "transparent" }}
+          />
         </div>
         <hr className="border mr-4.5 rotate-90 w-10 border-(--bordas)" />
         <div>
