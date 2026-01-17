@@ -158,7 +158,7 @@
 }
 
 .featured-news__button:hover {
-    background: var(--destaques);
+    background: var(--botoes);
     color: var(--bordas);
     transform: translateX(4px);
 }

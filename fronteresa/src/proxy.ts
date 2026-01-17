@@ -10,7 +10,7 @@ const publicRoutes = [
 const REDIRECT_WHEN_NOT_AUTHENTICATED = "/sign-in";
 
 export function proxy(request: NextRequest) {
-  const url = request.nextUrl.pathname;
+/*   const url = request.nextUrl.pathname;
   const publicRoute = publicRoutes.find((route) => route.route == url);
   const token = request.cookies.get("auth_token");
 
@@ -32,7 +32,7 @@ export function proxy(request: NextRequest) {
 
   if (token && !publicRoute) {
     return NextResponse.next();
-  }
+  } */
 
   return NextResponse.next();
 }

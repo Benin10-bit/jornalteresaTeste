@@ -1,5 +1,4 @@
 import { API_MAIN_ROUTE } from "@/constants/apiRoute";
-import { cacheLife } from "next/cache";
 
 async function catalogActions() {
 
