@@ -1,4 +1,4 @@
-import express from "express";
+import express, { type Request, type Response } from "express";
 import UserController from "../controllers/UserController.js";
 import { validatePassword } from "../../middlewares/validatePassword.js";
 
@@ -40,7 +40,7 @@ export const userRouter = express.Router();
  *       400:
  *         description: Dados inválidos ou usuário já existe
  */
-userRouter.post("/user/register", validatePassword ,UserController.register);
+userRouter.post("/user/register", validatePassword, UserController.register);
 
 /**
  * @swagger
@@ -77,3 +77,15 @@ userRouter.post("/user/register", validatePassword ,UserController.register);
  *         description: Credenciais inválidas
  */
 userRouter.post("/user/login", UserController.login);
+
+userRouter.get("/user/logout", async (req: Request, res: Response) => {
+  res.cookie("auth_token", "", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    maxAge: 0, // expira imediatamente
+  });
+
+  // envia uma resposta ao cliente
+  return res.status(200).json({ message: "Logout realizado com sucesso" });
+});
