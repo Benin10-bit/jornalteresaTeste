@@ -1,28 +1,28 @@
-"use client"
+"use client";
 
-import { useState, FormEvent, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/painel/button';
-import { Input } from '@/components/ui/painel/input';
-import { Label } from '@/components/ui/painel/label';
-import { Textarea } from '@/components/ui/painel/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/painel/select';
-import { X, Loader2, FileText, Image as ImageIcon } from 'lucide-react';
-import { toastError, toastSuccess } from '@/lib/toast';
+import { useState, FormEvent, useRef } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/uiPainel/button";
+import { Input } from "@/components/ui/uiPainel/input";
+import { Label } from "@/components/ui/uiPainel/label";
+import { Textarea } from "@/components/ui/uiPainel/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/uiPainel/select";
+import { X, Loader2, FileText, Image as ImageIcon } from "lucide-react";
+import { toastError, toastSuccess } from "@/lib/toast/toast";
+import { NEWS_TYPES } from "@/constants/NewsTypes";
 
-const NEWS_TYPES = [
-  { value: 'noticia', label: '📰 Notícia', icon: '📰' },
-  { value: 'cronica', label: '📝 Crônica', icon: '📝' },
-  { value: 'poema', label: '✍️ Poema', icon: '✍️' },
-  { value: 'tirinha', label: '🎨 Tirinha', icon: '🎨' },
-];
-
-const CreateNews = () => {
-  const [newsType, setNewsType] = useState('');
-  const [title, setTitle] = useState('');
-  const [summary, setSummary] = useState('');
-  const [author, setAuthor] = useState('');
-  const [body, setBody] = useState('');
+export function CreateNews() {
+  const [newsType, setNewsType] = useState("");
+  const [title, setTitle] = useState("");
+  const [summary, setSummary] = useState("");
+  const [author, setAuthor] = useState("");
+  const [body, setBody] = useState("");
   const [images, setImages] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -32,28 +32,36 @@ const CreateNews = () => {
   const handleImageChange = (files: FileList | null) => {
     if (!files) return;
 
-    const newImages = Array.from(files).filter(f => f.type.startsWith('image/')).slice(0, 5 - images.length);
-    
+    const newImages = Array.from(files)
+      .filter((f) => f.type.startsWith("image/"))
+      .slice(0, 5 - images.length);
+
     if (images.length + newImages.length > 5) {
-      toastError("Limite máximo de 5 imagens")
+      toastError("Limite máximo de 5 imagens");
       return;
     }
 
-    const newPreviews = newImages.map(file => URL.createObjectURL(file));
-    setImages(prev => [...prev, ...newImages]);
-    setPreviews(prev => [...prev, ...newPreviews]);
+    const newPreviews = newImages.map((file) => URL.createObjectURL(file));
+    setImages((prev) => [...prev, ...newImages]);
+    setPreviews((prev) => [...prev, ...newPreviews]);
   };
 
   const removeImage = (index: number) => {
     URL.revokeObjectURL(previews[index]);
-    setImages(prev => prev.filter((_, i) => i !== index));
-    setPreviews(prev => prev.filter((_, i) => i !== index));
+    setImages((prev) => prev.filter((_, i) => i !== index));
+    setPreviews((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (!newsType || !title.trim() || !summary.trim() || !author.trim() || !body.trim()) {
+    if (
+      !newsType ||
+      !title.trim() ||
+      !summary.trim() ||
+      !author.trim() ||
+      !body.trim()
+    ) {
       toastError("Preencha todos os campos obrigatórios");
       return;
     }
@@ -61,7 +69,7 @@ const CreateNews = () => {
     setLoading(true);
 
     try {
-/*       await api.createNews({
+      /*       await api.createNews({
         newsType,
         title: title.trim(),
         summary: summary.trim(),
@@ -73,13 +81,13 @@ const CreateNews = () => {
       toastSuccess("A notícia foi publicada com sucesso");
 
       // Limpar formulário
-      setNewsType('');
-      setTitle('');
-      setSummary('');
-      setAuthor('');
-      setBody('');
+      setNewsType("");
+      setTitle("");
+      setSummary("");
+      setAuthor("");
+      setBody("");
       setImages([]);
-      previews.forEach(url => URL.revokeObjectURL(url));
+      previews.forEach((url) => URL.revokeObjectURL(url));
       setPreviews([]);
     } catch (error) {
       toastError(error instanceof Error ? error.message : "Tente novamente");
@@ -110,7 +118,7 @@ const CreateNews = () => {
               <SelectValue placeholder="Selecione o tipo..." />
             </SelectTrigger>
             <SelectContent>
-              {NEWS_TYPES.map(type => (
+              {NEWS_TYPES.map((type) => (
                 <SelectItem key={type.value} value={type.value}>
                   {type.label}
                 </SelectItem>
@@ -176,11 +184,12 @@ const CreateNews = () => {
         </div>
 
         <div className="space-y-2">
-          <Label className="text-accent font-medium">
-            Imagens (máx. 5)
-          </Label>
+          <Label className="text-accent font-medium">Imagens (máx. 5)</Label>
           <div
-            onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+            onDragOver={(e) => {
+              e.preventDefault();
+              setDragOver(true);
+            }}
             onDragLeave={() => setDragOver(false)}
             onDrop={(e) => {
               e.preventDefault();
@@ -189,14 +198,18 @@ const CreateNews = () => {
             }}
             onClick={() => fileInputRef.current?.click()}
             className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all ${
-              dragOver 
-                ? 'border-accent bg-accent/5' 
-                : 'border-border bg-input hover:border-accent hover:bg-accent/5'
+              dragOver
+                ? "border-accent bg-accent/5"
+                : "border-border bg-input hover:border-accent hover:bg-accent/5"
             }`}
           >
             <ImageIcon className="w-12 h-12 mx-auto mb-3 text-accent" />
-            <p className="text-foreground font-medium mb-1">Clique ou arraste imagens</p>
-            <p className="text-sm text-muted-foreground">PNG, JPG até 5 arquivos</p>
+            <p className="text-foreground font-medium mb-1">
+              Clique ou arraste imagens
+            </p>
+            <p className="text-sm text-muted-foreground">
+              PNG, JPG até 5 arquivos
+            </p>
             <input
               ref={fileInputRef}
               type="file"
@@ -210,11 +223,21 @@ const CreateNews = () => {
           {previews.length > 0 && (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mt-4">
               {previews.map((preview, i) => (
-                <div key={i} className="relative group aspect-square rounded-lg overflow-hidden border-2 border-border">
-                  <img src={preview} alt={`Preview ${i + 1}`} className="w-full h-full object-cover" />
+                <div
+                  key={i}
+                  className="relative group aspect-square rounded-lg overflow-hidden border-2 border-border"
+                >
+                  <img
+                    src={preview}
+                    alt={`Preview ${i + 1}`}
+                    className="w-full h-full object-cover"
+                  />
                   <button
                     type="button"
-                    onClick={(e) => { e.stopPropagation(); removeImage(i); }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeImage(i);
+                    }}
                     className="absolute top-1 right-1 w-6 h-6 rounded-full bg-destructive text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                   >
                     <X className="w-4 h-4" />
@@ -236,12 +259,10 @@ const CreateNews = () => {
               Criando...
             </>
           ) : (
-            'Criar Notícia'
+            "Criar Notícia"
           )}
         </Button>
       </form>
     </motion.div>
   );
-};
-
-export default CreateNews;
+}

@@ -1,19 +1,25 @@
-import { useState, FormEvent } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '@/components/ui/painel/button';
-import { Input } from '@/components/ui/painel/input';
-import { Label } from '@/components/ui/painel/label';
-import { Textarea } from '@/components/ui/painel/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/painel/select';
-import { X, Loader2, Edit } from 'lucide-react';
-import { toastError, toastSuccess } from '@/lib/toast';
-import { News } from '@/types/NewsPanel';
+import { useState, FormEvent } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/uiPainel/button";
+import { Input } from "@/components/ui/uiPainel/input";
+import { Label } from "@/components/ui/uiPainel/label";
+import { Textarea } from "@/components/ui/uiPainel/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/uiPainel/select";
+import { X, Loader2, Edit } from "lucide-react";
+import { toastError, toastSuccess } from "@/lib/toast/toast";
+import { News } from "@/types/NewsPanel";
 
 const NEWS_TYPES = [
-  { value: 'noticia', label: '📰 Notícia' },
-  { value: 'cronica', label: '📝 Crônica' },
-  { value: 'poema', label: '✍️ Poema' },
-  { value: 'tirinha', label: '🎨 Tirinha' },
+  { value: "noticia", label: "📰 Notícia" },
+  { value: "cronica", label: "📝 Crônica" },
+  { value: "poema", label: "✍️ Poema" },
+  { value: "tirinha", label: "🎨 Tirinha" },
 ];
 
 interface EditNewsModalProps {
@@ -22,7 +28,11 @@ interface EditNewsModalProps {
   onSuccess: () => void;
 }
 
-const EditNewsModal = ({ news, onClose, onSuccess }: EditNewsModalProps) => {
+export function EditNewsModal({
+  news,
+  onClose,
+  onSuccess,
+}: EditNewsModalProps) {
   const [newsType, setNewsType] = useState<string>(news.newstype);
   const [summary, setSummary] = useState(news.summary);
   const [author, setAuthor] = useState(news.author);
@@ -40,7 +50,7 @@ const EditNewsModal = ({ news, onClose, onSuccess }: EditNewsModalProps) => {
     setLoading(true);
 
     try {
-/*       await api.updateNews(news.id, {
+      /*       await api.updateNews(news.id, {
         newstype: newsType as any,
         summary: summary.trim(),
         author: author.trim(),
@@ -59,7 +69,7 @@ const EditNewsModal = ({ news, onClose, onSuccess }: EditNewsModalProps) => {
 
   return (
     <AnimatePresence>
-      <div 
+      <div
         className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
         onClick={onClose}
       >
@@ -74,7 +84,9 @@ const EditNewsModal = ({ news, onClose, onSuccess }: EditNewsModalProps) => {
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
               <Edit className="w-6 h-6 text-accent" />
-              <h2 className="text-2xl font-bold text-foreground">Editar Notícia</h2>
+              <h2 className="text-2xl font-bold text-foreground">
+                Editar Notícia
+              </h2>
             </div>
             <button
               onClick={onClose}
@@ -86,7 +98,10 @@ const EditNewsModal = ({ news, onClose, onSuccess }: EditNewsModalProps) => {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="edit-newsType" className="text-accent font-medium">
+              <Label
+                htmlFor="edit-newsType"
+                className="text-accent font-medium"
+              >
                 Tipo *
               </Label>
               <Select value={newsType} onValueChange={setNewsType}>
@@ -94,7 +109,7 @@ const EditNewsModal = ({ news, onClose, onSuccess }: EditNewsModalProps) => {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {NEWS_TYPES.map(type => (
+                  {NEWS_TYPES.map((type) => (
                     <SelectItem key={type.value} value={type.value}>
                       {type.label}
                     </SelectItem>
@@ -113,7 +128,9 @@ const EditNewsModal = ({ news, onClose, onSuccess }: EditNewsModalProps) => {
                 disabled
                 className="bg-muted border-border cursor-not-allowed"
               />
-              <p className="text-xs text-muted-foreground">O título não pode ser editado</p>
+              <p className="text-xs text-muted-foreground">
+                O título não pode ser editado
+              </p>
             </div>
 
             <div className="space-y-2">
@@ -167,7 +184,7 @@ const EditNewsModal = ({ news, onClose, onSuccess }: EditNewsModalProps) => {
                     Salvando...
                   </>
                 ) : (
-                  'Salvar Alterações'
+                  "Salvar Alterações"
                 )}
               </Button>
               <Button
@@ -185,6 +202,4 @@ const EditNewsModal = ({ news, onClose, onSuccess }: EditNewsModalProps) => {
       </div>
     </AnimatePresence>
   );
-};
-
-export default EditNewsModal;
+}

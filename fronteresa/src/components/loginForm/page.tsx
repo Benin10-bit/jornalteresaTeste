@@ -3,7 +3,7 @@
 import useLoginForm from "@/hooks/useLoginForm";
 import Spinner from "../ui/loaders/Spinner/page";
 import Link from "next/link";
-import { delayedReload } from "@/lib/delayedReload";
+import { delayedReload } from "@/lib/delay/delayedReload";
 import Image from "next/image";
 import { useState } from "react";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";

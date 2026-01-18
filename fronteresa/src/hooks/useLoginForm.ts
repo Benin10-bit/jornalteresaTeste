@@ -1,6 +1,6 @@
 "use client";
 
-import { toastSuccess, toastError } from "@/lib/toast";
+import { toastSuccess, toastError } from "@/lib/toast/toast";
 import { loginAction } from "@/actions/LoginActions/loginActions";
 import { useState } from "react";
 
@@ -14,8 +14,11 @@ export function useLoginForm() {
       setLoading(true);
       await loginAction(formData);
       toastSuccess("Login realizado com sucesso. Redirecionando...");
-    } catch(err) {
-      toastError("Email ou senha inválidos " + (err instanceof Error ? `(${err.message})` : ""));
+    } catch (err) {
+      toastError(
+        "Email ou senha inválidos " +
+          (err instanceof Error ? `(${err.message})` : ""),
+      );
     } finally {
       setLoading(false);
     }
