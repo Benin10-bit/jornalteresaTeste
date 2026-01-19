@@ -165,6 +165,7 @@ function SignupForm() {
               Gênero
             </label>
             <select
+              defaultValue={''}
               id="gender"
               name="gender"
               className=" gender-select
@@ -174,7 +175,7 @@ function SignupForm() {
                 focus:border-(--links)
               "
             >
-              <option value="" disabled selected>- Selecionar -</option>
+              <option value="" disabled>- Selecionar -</option>
               <option value="masculino">Masculino</option>
               <option value="feminino">Feminino</option>
               <option value="outro">Outro</option>
