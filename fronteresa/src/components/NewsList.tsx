@@ -133,7 +133,7 @@ const NewsList = () => {
                     <Button
                       onClick={() => setEditingNews(item)}
                       size="sm"
-                      className="bg-accent hover:bg-accent/90 text-accent-foreground gap-2"
+                      className="scale-anim bg-accent hover:bg-[#c5e3bb] text-accent-foreground gap-2 cursor-pointer border-2 border-accent hover:border-[#c5e3bb]"
                     >
                       <Edit className="w-3.5 h-3.5" />
                       Editar
@@ -143,7 +143,7 @@ const NewsList = () => {
                       onClick={() => handleDelete(item.id)}
                       size="sm"
                       variant="destructive"
-                      className="gap-2"
+                      className="scale-anim gap-2 cursor-pointer border-[#dc2828] border-2 hover:bg-red-700 hover:border-red-800"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                       Remover
@@ -153,7 +153,7 @@ const NewsList = () => {
                       onClick={() => handleCopyId(item.id)}
                       size="sm"
                       variant="outline"
-                      className="gap-2 border-border hover:border-accent hover:bg-accent/5"
+                      className="scale-anim gap-2 border-border hover:border-accent hover:bg-accent/5 cursor-pointer"
                     >
                       <Copy className="w-3.5 h-3.5" />
                       Copiar ID

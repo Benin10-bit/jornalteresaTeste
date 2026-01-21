@@ -251,7 +251,7 @@ export default function   CreateNews() {
         <Button
           type="submit"
           disabled={loading}
-          className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-11"
+          className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-11 cursor-pointer"
         >
           {loading ? (
             <>

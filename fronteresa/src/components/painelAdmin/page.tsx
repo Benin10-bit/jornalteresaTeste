@@ -16,7 +16,7 @@ import { Button } from "../ui/uiPainel/button";
 import { useState } from "react";
 
 export function PainelAdmin() {
-  const [loading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   return (
     <div className="min-h-screen bg-background">
@@ -64,7 +64,7 @@ export function PainelAdmin() {
             <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8 bg-card border border-border h-auto p-1">
               <TabsTrigger
                 value="create"
-                className="flex justify-center items-center cursor-pointer gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground py-2.5 [&>*]:leading-none"
+                className="flex justify-center items-center cursor-pointer gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground py-2.5 *:leading-none"
               >
                 <PlusCircle className="w-4 h-4 flex" />
                 <span className='h-lh'>Criar</span>
