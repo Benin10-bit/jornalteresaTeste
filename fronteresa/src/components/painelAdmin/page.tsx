@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   List,
@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
 import { LogOut, Newspaper, PlusCircle } from "lucide-react";
 import { Button } from "../ui/uiPainel/button";
 import { useState } from "react";
+import Link from "next/link";
 
 export function PainelAdmin() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -48,7 +49,7 @@ export function PainelAdmin() {
               className="gap-2"
             >
               <LogOut className="w-4 h-4" />
-              Sair
+              <Link href={"/"}>Retornar ao catálogo</Link>
             </Button>
           </div>
         </div>
@@ -67,13 +68,13 @@ export function PainelAdmin() {
                 className="flex justify-center items-center cursor-pointer gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground py-2.5 *:leading-none hover:bg-accent/10"
               >
                 <PlusCircle className="w-4 h-4 flex" />
-                <span className='h-lh'>Criar</span>
+                <span className="h-lh">Criar</span>
               </TabsTrigger>
               <TabsTrigger
                 value="list"
                 className="flex justify-center items-center cursor-pointer gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground py-2.5 hover:bg-accent/10"
               >
-                <IconClipboardList className='w-5' />
+                <IconClipboardList className="w-5" />
                 <span>Listar</span>
               </TabsTrigger>
             </TabsList>

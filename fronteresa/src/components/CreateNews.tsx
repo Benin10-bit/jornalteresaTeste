@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent, useRef } from "react";
+import React, { useState, FormEvent, useRef } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/uiPainel/button";
 import { Input } from "@/components/ui/uiPainel/input";
@@ -16,8 +16,11 @@ import {
 import { X, Loader2, FileText, Image as ImageIcon } from "lucide-react";
 import { toastError, toastSuccess } from "@/lib/toast/toast";
 import { NEWS_TYPES } from "@/constants/NewsTypes";
+import useCreateNews from "@/hooks/useCreateNews";
 
-export default function   CreateNews() {
+export default function CreateNews() {
+  const { submit, loading } = useCreateNews();
+
   const [newsType, setNewsType] = useState("");
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
@@ -25,7 +28,6 @@ export default function   CreateNews() {
   const [body, setBody] = useState("");
   const [images, setImages] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -52,9 +54,7 @@ export default function   CreateNews() {
     setPreviews((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
+  async function handleSubmit() {
     if (
       !newsType ||
       !title.trim() ||
@@ -66,21 +66,30 @@ export default function   CreateNews() {
       return;
     }
 
-    setLoading(true);
+    if (images.length === 0) {
+      toastError("Envie pelo menos uma imagem");
+      return;
+    }
+
+    const payload = new FormData();
+
+    // campos de texto (EXATAMENTE com esses nomes)
+    payload.append("title", title);
+    payload.append("summary", summary);
+    payload.append("body", body);
+    payload.append("author", author);
+    payload.append("newstype", newsType);
+
+    // arquivos → exatamente como o multer espera
+    images.forEach((file, index) => {
+      payload.append(`image${index + 1}`, file);
+    });
 
     try {
-      /*       await api.createNews({
-        newsType,
-        title: title.trim(),
-        summary: summary.trim(),
-        author: author.trim(),
-        body: body.trim(),
-        images,
-      }); */
-
+      await submit(payload);
       toastSuccess("A notícia foi publicada com sucesso");
 
-      // Limpar formulário
+      // limpar estado
       setNewsType("");
       setTitle("");
       setSummary("");
@@ -91,10 +100,8 @@ export default function   CreateNews() {
       setPreviews([]);
     } catch (error) {
       toastError(error instanceof Error ? error.message : "Tente novamente");
-    } finally {
-      setLoading(false);
     }
-  };
+  }
 
   return (
     <motion.div
@@ -108,12 +115,18 @@ export default function   CreateNews() {
         <h2 className="text-2xl font-bold text-foreground">Nova Notícia</h2>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+        className="space-y-6"
+      >
         <div className="space-y-2">
           <Label htmlFor="newsType" className="text-accent font-medium">
             Tipo *
           </Label>
-          <Select value={newsType} onValueChange={setNewsType}>
+          <Select name="newstype" value={newsType} onValueChange={setNewsType}>
             <SelectTrigger className="bg-input border-border focus:border-accent hover:border-accent focus:ring-offset-2">
               <SelectValue placeholder="Selecione o tipo..." />
             </SelectTrigger>
@@ -133,6 +146,7 @@ export default function   CreateNews() {
           </Label>
           <Input
             id="title"
+            name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Digite o título da notícia"
@@ -147,6 +161,7 @@ export default function   CreateNews() {
           </Label>
           <Textarea
             id="summary"
+            name="summary"
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
             placeholder="Escreva um breve resumo"
@@ -161,6 +176,7 @@ export default function   CreateNews() {
           </Label>
           <Input
             id="author"
+            name="author"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
             placeholder="Nome do autor"
@@ -175,6 +191,7 @@ export default function   CreateNews() {
           </Label>
           <Textarea
             id="body"
+            name="body"
             value={body}
             onChange={(e) => setBody(e.target.value)}
             placeholder="Conteúdo completo da notícia"
