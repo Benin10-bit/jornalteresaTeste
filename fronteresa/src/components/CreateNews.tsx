@@ -114,7 +114,7 @@ export default function   CreateNews() {
             Tipo *
           </Label>
           <Select value={newsType} onValueChange={setNewsType}>
-            <SelectTrigger className="bg-input border-border focus:border-accent">
+            <SelectTrigger className="bg-input border-border focus:border-accent hover:border-accent focus:ring-offset-2">
               <SelectValue placeholder="Selecione o tipo..." />
             </SelectTrigger>
             <SelectContent>
@@ -137,7 +137,7 @@ export default function   CreateNews() {
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Digite o título da notícia"
             disabled={loading}
-            className="bg-input border-border focus:border-accent"
+            className="bg-input border-border focus:ring-offset-2 focus:border-accent hover:border-accent focus:ring-offset-2"
           />
         </div>
 
@@ -151,7 +151,7 @@ export default function   CreateNews() {
             onChange={(e) => setSummary(e.target.value)}
             placeholder="Escreva um breve resumo"
             disabled={loading}
-            className="bg-input border-border focus:border-accent min-h-24 resize-y"
+            className="bg-input border-border focus:border-accent hover:border-accent focus:ring-offset-2 min-h-24 resize-y"
           />
         </div>
 
@@ -165,7 +165,7 @@ export default function   CreateNews() {
             onChange={(e) => setAuthor(e.target.value)}
             placeholder="Nome do autor"
             disabled={loading}
-            className="bg-input border-border focus:border-accent"
+            className="bg-input border-border focus:border-accent hover:border-accent focus:ring-offset-2"
           />
         </div>
 
@@ -179,7 +179,7 @@ export default function   CreateNews() {
             onChange={(e) => setBody(e.target.value)}
             placeholder="Conteúdo completo da notícia"
             disabled={loading}
-            className="bg-input border-border focus:border-accent min-h-40 resize-y"
+            className="bg-input border-border focus:border-accent hover:border-accent focus:ring-offset-2 min-h-40 resize-y"
           />
         </div>
 

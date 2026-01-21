@@ -64,14 +64,14 @@ export function PainelAdmin() {
             <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8 bg-card border border-border h-auto p-1">
               <TabsTrigger
                 value="create"
-                className="flex justify-center items-center cursor-pointer gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground py-2.5 *:leading-none"
+                className="flex justify-center items-center cursor-pointer gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground py-2.5 *:leading-none hover:bg-accent/10"
               >
                 <PlusCircle className="w-4 h-4 flex" />
                 <span className='h-lh'>Criar</span>
               </TabsTrigger>
               <TabsTrigger
                 value="list"
-                className="flex justify-center items-center cursor-pointer gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground py-2.5"
+                className="flex justify-center items-center cursor-pointer gap-2 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground py-2.5 hover:bg-accent/10"
               >
                 <IconClipboardList className='w-5' />
                 <span>Listar</span>
