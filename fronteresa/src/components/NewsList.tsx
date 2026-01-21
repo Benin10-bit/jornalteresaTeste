@@ -100,12 +100,12 @@ const NewsList = () => {
               className="bg-input border border-border rounded-lg p-4 hover:border-accent transition-all"
             >
               <div className="flex flex-col md:flex-row gap-4">
-                {item.image1 && (
+                {item.arquivos[0].image1 && (
                   <img
                     src={
-                      item.image1.startsWith("http")
-                        ? item.image1
-                        : `/api${item.image1}`
+                      item.arquivos[0].image1.startsWith("http")
+                        ? item.arquivos[0].image1
+                        : `/api${item.arquivos[0].image1}`
                     }
                     alt={item.title}
                     className="w-full md:w-40 h-40 object-cover rounded-lg shrink-0"
