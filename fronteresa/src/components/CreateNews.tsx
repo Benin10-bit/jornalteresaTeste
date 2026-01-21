@@ -137,7 +137,7 @@ export default function   CreateNews() {
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Digite o título da notícia"
             disabled={loading}
-            className="bg-input border-border focus:ring-offset-2 focus:border-accent hover:border-accent focus:ring-offset-2"
+            className="bg-input border-border focus:ring-offset-2 focus:border-accent hover:border-accent"
           />
         </div>
 

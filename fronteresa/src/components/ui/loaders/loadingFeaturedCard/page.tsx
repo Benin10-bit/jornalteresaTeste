@@ -1,4 +1,5 @@
 import Spinner from "../Spinner/page";
+import './loadingFeatured.css'
 
 export function LoadingFeaturedCard() {
   return (
@@ -7,7 +8,7 @@ export function LoadingFeaturedCard() {
         background:
           "linear-gradient(135deg, var(--destaques) 0%, var(--botoes) 100%)",
       }}
-      className="mb-4 animate-pulse featuredEffects flex justify-center items-center rounded-3xl border w-[96vw] h-175 border-(--bordas)
+      className="loading-featured-news animate-pulse featuredEffects flex justify-center items-center rounded-3xl border border-(--bordas)
 "
     >
       <div className="card__shine" />

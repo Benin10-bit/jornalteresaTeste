@@ -4,7 +4,7 @@ import Spinner from "../Spinner/page";
 
 export function LoadingCard() {
   return (
-    <div className="card animate-pulse">
+    <div className="loading-card card animate-pulse">
       <div className="card__shine" />
       <div className="card__glow" />
 

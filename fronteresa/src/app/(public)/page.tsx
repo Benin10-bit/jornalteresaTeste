@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 export default function CatalogPage() {
   return (
-      <Suspense fallback={<LoadingGrid quantity={6} />}>
+      <Suspense fallback={<LoadingGrid quantity={12} />}>
         <TestePage />
       </Suspense>
   );
