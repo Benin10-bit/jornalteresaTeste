@@ -17,7 +17,7 @@ import { X, Loader2, FileText, Image as ImageIcon } from "lucide-react";
 import { toastError, toastSuccess } from "@/lib/toast/toast";
 import { NEWS_TYPES } from "@/constants/NewsTypes";
 
-export function CreateNews() {
+export default function   CreateNews() {
   const [newsType, setNewsType] = useState("");
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");

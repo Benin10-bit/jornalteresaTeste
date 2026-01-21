@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/uiPainel/button";
