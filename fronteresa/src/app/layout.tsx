@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeContext } from "@/context/themeContext/provider";
+import Header from "@/components/ui/header/page";
 
 export const metadata: Metadata = {
   title: "Jornal Teresa",
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="pt-br" suppressHydrationWarning>
       <body>
-        <ThemeContext>{children}</ThemeContext>
+        <ThemeContext>
+          {children}
+          </ThemeContext>
       </body>
     </html>
   );
