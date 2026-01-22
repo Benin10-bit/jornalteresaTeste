@@ -16,6 +16,7 @@ import {
 import { X, Loader2, Edit } from "lucide-react";
 import { toastError, toastSuccess } from "@/lib/toast/toast";
 import { News } from "@/types/NewsPanel";
+import useEditNews from "@/hooks/useEditNews";
 
 const NEWS_TYPES = [
   { value: "noticia", label: "📰 Notícia" },
@@ -35,6 +36,8 @@ export function EditNewsModal({
   onClose,
   onSuccess,
 }: EditNewsModalProps) {
+  // const { submit, editLoading } = useEditNews();
+
   const [newsType, setNewsType] = useState<string>(news.newstype);
   const [summary, setSummary] = useState(news.summary);
   const [author, setAuthor] = useState(news.author);
