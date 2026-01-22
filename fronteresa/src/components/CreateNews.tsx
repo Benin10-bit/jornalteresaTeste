@@ -79,7 +79,7 @@ export default function CreateNews() {
     payload.append("body", body);
     payload.append("author", author);
     payload.append("newstype", newsType);
-
+    
     // arquivos → exatamente como o multer espera
     images.forEach((file, index) => {
       payload.append(`image${index + 1}`, file);

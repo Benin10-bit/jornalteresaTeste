@@ -1,21 +1,33 @@
 import { API_MAIN_ROUTE } from "@/constants/apiRoute";
+import { News } from "@/types/NewsPanel";
 
-async function editNewsActions(formData: FormData, id: number | string) {
-    if (!(formData instanceof FormData)) {
-        throw new Error("Payload inválido");
+async function editNewsActions(data: any, id: string) {
+    console.log(data)
+
+    const payload: any = {
+        title: data.title,
+        summary: data.summary,
+        body: data.body,
+        newsType: data.newsType,
+        author: data.author,
     }
 
     const response = await fetch(
         API_MAIN_ROUTE + `/news/update-news/${id}`,
         {
+            headers: {
+                'Content-type': 'application/json'
+            },
             method: "PUT",
             credentials: "include",
-            body: formData,
+            body: JSON.stringify(payload),
         }
     );
 
+    console.log(response)
     // Se der certo
     if (response.ok) return response.json();
+
 
     // Em caso de erro
     let message = "Falha ao editar notícia";

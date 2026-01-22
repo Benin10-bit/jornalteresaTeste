@@ -36,13 +36,12 @@ export function EditNewsModal({
   onClose,
   onSuccess,
 }: EditNewsModalProps) {
-  // const { submit, editLoading } = useEditNews();
+  const { submit, editLoading } = useEditNews();
 
   const [newsType, setNewsType] = useState<string>(news.newstype);
   const [summary, setSummary] = useState(news.summary);
   const [author, setAuthor] = useState(news.author);
   const [body, setBody] = useState(news.body);
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -52,23 +51,14 @@ export function EditNewsModal({
       return;
     }
 
-    setLoading(true);
-
     try {
-      /*       await api.updateNews(news.id, {
-        newstype: newsType as any,
-        summary: summary.trim(),
-        author: author.trim(),
-        body: body.trim(),
-      }); */
-
+      submit(news, news.id)
       toastSuccess("As alterações foram salvas com sucesso");
 
       onSuccess();
     } catch (error) {
       toastError(error instanceof Error ? error.message : "Tente novamente");
     } finally {
-      setLoading(false);
     }
   };
 
@@ -146,7 +136,7 @@ export function EditNewsModal({
                 id="edit-summary"
                 value={summary}
                 onChange={(e) => setSummary(e.target.value)}
-                disabled={loading}
+                disabled={editLoading}
                 className="bg-input border-border focus:border-accent min-h-24 resize-y"
               />
             </div>
@@ -159,7 +149,7 @@ export function EditNewsModal({
                 id="edit-author"
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
-                disabled={loading}
+                disabled={editLoading}
                 className="bg-input border-border focus:border-accent"
               />
             </div>
@@ -172,7 +162,7 @@ export function EditNewsModal({
                 id="edit-body"
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
-                disabled={loading}
+                disabled={editLoading}
                 className="bg-input border-border focus:border-accent min-h-40 resize-y"
               />
             </div>
@@ -180,10 +170,10 @@ export function EditNewsModal({
             <div className="flex gap-3 pt-2">
               <Button
                 type="submit"
-                disabled={loading}
+                disabled={editLoading}
                 className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground font-semibold h-11"
               >
-                {loading ? (
+                {editLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     Salvando...
@@ -195,7 +185,7 @@ export function EditNewsModal({
               <Button
                 type="button"
                 onClick={onClose}
-                disabled={loading}
+                disabled={editLoading}
                 variant="outline"
                 className="border-border hover:bg-muted"
               >

@@ -27,6 +27,7 @@ const NewsList = () => {
     }
   };
 
+
   useEffect(() => {
     loadNews();
   }, []);
@@ -92,6 +93,7 @@ const NewsList = () => {
 
         <div className="space-y-4">
           {news.map((item, index) => (
+         
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 10 }}

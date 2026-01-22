@@ -1,14 +1,14 @@
 
 export interface News {
-  id?: string;
+  id: string;
   newstype: 'noticia' | 'cronica' | 'poema' | 'tirinha';
   title: string;
   summary: string;
   author: string;
   body: string;
-  arquivos?: Array<{
+  arquivos: Array<{
     id?: string,
-    image1?: string,
+    image1: string,
     image2?: string,
     image3?: string,
     image4?: string,

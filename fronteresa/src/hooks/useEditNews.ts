@@ -5,14 +5,14 @@ import { editNewsActions } from "@/actions/EditNews/editNewsActions";
 import { useState } from "react";
 
 export function useEditNews() {
-  const [editloading, setEditLoading] = useState<boolean>(false);
+  const [editLoading, setEditLoading] = useState<boolean>(false);
 
-  async function submit(formData: FormData, id: number|string) {
-    if (editloading) return;
+  async function submit(data: any, id: string) {
+    if (editLoading) return;
 
     try {
       setEditLoading(true);
-      await editNewsActions(formData, id);
+      await editNewsActions(data, id);
       toastSuccess("Notícia editada com sucesso!");
     } catch (err) {
       toastError(
@@ -24,6 +24,6 @@ export function useEditNews() {
     }
   }
 
-  return { submit, editloading };
+  return { submit, editLoading };
 }
 export default useEditNews;
