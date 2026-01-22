@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -52,7 +52,16 @@ export function EditNewsModal({
     }
 
     try {
-      submit(news, news.id)
+      submit(
+        {
+          ...news,
+          newstype: newsType,
+          summary,
+          author,
+          body,
+        },
+        news.id,
+      );
       toastSuccess("As alterações foram salvas com sucesso");
 
       onSuccess();

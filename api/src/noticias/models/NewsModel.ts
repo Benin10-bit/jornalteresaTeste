@@ -3,7 +3,8 @@ import ApiError from "../../middlewares/errors/ApiError.js";
 import type Files from "../services/entities/Files.js";
 
 export default class NewsModel {
-  public static async getAllNews() {
+
+public static async getAllNews() {
   return prisma.noticias.findMany({
     orderBy: {
     created_at: "asc",
