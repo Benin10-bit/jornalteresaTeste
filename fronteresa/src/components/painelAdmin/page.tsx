@@ -8,8 +8,8 @@ import {
   TabsTrigger,
 } from "@radix-ui/react-tabs";
 import { IconClipboardList } from "@tabler/icons-react";
-import CreateNews from "../CreateNews";
-import NewsList from "../NewsList";
+import CreateNews from "./CreateNews";
+import NewsList from "./NewsList";
 import { motion } from "framer-motion";
 import { LogOut, Newspaper, PlusCircle } from "lucide-react";
 import { Button } from "../ui/uiPainel/button";

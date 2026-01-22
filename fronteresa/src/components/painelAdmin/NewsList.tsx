@@ -9,6 +9,7 @@ import { catalogActions } from "@/actions/CatalogActions/catalogActions";
 import { toastError, toastSuccess } from "@/lib/toast/toast";
 import { EditNewsModal } from "./EditNewsModal";
 import { NEWS_TYPE_ICONS } from "@/constants/NewsTypes";
+import { deleteNewsActions } from "@/actions/DeleteNews/deleteNewsActions";
 
 const NewsList = () => {
   const [news, setNews] = useState<News[]>([]);
@@ -36,7 +37,7 @@ const NewsList = () => {
     if (!confirm("Tem certeza que deseja deletar esta notícia?")) return;
 
     try {
-      // await api.deleteNews(id);
+      await deleteNewsActions(id);
       setNews((prev) => prev.filter((n) => n.id !== id));
       toastError("A notícia foi deletada com sucesso");
     } catch (error) {
