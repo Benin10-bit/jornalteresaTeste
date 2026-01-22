@@ -8,7 +8,7 @@ export default function CatalogPage() {
   return (
     <div className="space-y-8">
       <Header />
-      <div className="relative w-[96vw] m-auto mb-4 h-170 border-t border-b border-(--bordas)">
+      <div className="relative w-[65vw] m-auto mb-4 h-170 border-t-2 border-b-2 border-(--bordas)">
         <Image
           src="/Jornal_dark.png"
           alt="Logo do Jornal Teresa"
