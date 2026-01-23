@@ -60,11 +60,6 @@ h3 {
   font-family: "Libre Baskerville", sans-serif;
 }
 
-/* Scroll */
-::-webkit-scrollbar {
-  display: none;
-}
-
 /* Toast animations (used by react-hot-toast custom toasts) */
 @keyframes toast-in {
   from {
@@ -512,11 +507,12 @@ h3 {
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-muted rounded-full;
+     background: var(--botoes);
+     border-radius: calc(infinity * 1px);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-accent;
+    background: var(--hover);
   }
 }
 
