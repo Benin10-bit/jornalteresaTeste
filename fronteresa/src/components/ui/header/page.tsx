@@ -16,10 +16,12 @@ export default function Header() {
   return (
     <header
       className="
-        sticky top-0 z-50 w-full
+        rounded-[5em]
+        sticky top-[1em] z-50 w-[95%]
+        mx-auto
         flex items-center justify-between
-        px-16 py-4
-        bg-(--botoes)
+        px-16 py-2
+        bg-(--cards)/80
         border-b border-(--bordas)
         shadow-(--shadow)
         backdrop-blur
@@ -38,9 +40,9 @@ export default function Header() {
           />
         </div>
 
-        <span className="text-(--titulo) font-semibold tracking-wide">
-          Jornal Teresa
-        </span>
+        <h1 className="text-(--titulo) font-semibold tracking-wide text-[1.3em] leading-none" >
+          <i>J</i>ornal <br /> <i>T</i>eresa
+        </h1>
       </div>
 
       {/* Desktop menu */}
