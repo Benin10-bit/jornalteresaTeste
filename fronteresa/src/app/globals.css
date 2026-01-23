@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root[data-tema="light"] {
-  --background: #ebdabe;
+  --background: #f8e9c7;
   --foreground: #2e4030;
   --text: #2e4030;
   --titulo: #364a3a;

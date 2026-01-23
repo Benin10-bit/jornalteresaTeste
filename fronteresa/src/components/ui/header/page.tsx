@@ -16,8 +16,8 @@ export default function Header() {
   return (
     <header
       className="
-        rounded-[5em]
-        sticky top-[1em] z-50 w-[95%]
+        rounded-[2em]
+        sticky top-[0.5em] z-50 w-[98%]
         mx-auto
         flex items-center justify-between
         px-16 py-2

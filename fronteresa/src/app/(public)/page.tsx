@@ -1,22 +1,16 @@
-import LoadingGrid from "@/components/loadingGrid/page";
 import TestePage from "@/components/catalogContent/page";
-import { Suspense } from "react";
-import Image from "next/image";
+import { HeroComponent } from "@/components/heroComponent/page";
+import LoadingGrid from "@/components/loadingGrid/page";
 import Header from "@/components/ui/header/page";
+import { Suspense } from "react";
 
 export default function CatalogPage() {
   return (
-    <div className="space-y-8">
+    <div>
       <Header />
-      <div className="relative w-[65vw] m-auto mb-4 h-170 border-t-2 border-b-2 border-(--bordas)">
-        <Image
-          src="/Jornal_dark.png"
-          alt="Logo do Jornal Teresa"
-          fill
-          className="object-contain"
-        />
+      <div className="mt-8">
+        <HeroComponent />
       </div>
-
       <Suspense fallback={<LoadingGrid quantity={12} />}>
         <TestePage />
       </Suspense>
