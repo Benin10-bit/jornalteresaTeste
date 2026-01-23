@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
-import Image from "next/image"
-import { Menu } from "lucide-react"
+import Image from "next/image";
+import { Menu } from "lucide-react";
 
 import {
   Sheet,
@@ -10,9 +10,19 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
+import { isAdminActions } from "@/actions/isAdminActions/isAdminActions";
+import { useEffect, useState } from "react";
 
 export default function Header() {
+  const [headerRoutes, setHeaderRoutes] = useState<string[]>([]);
+
+  useEffect(() => {
+    isAdminActions().then((res) => {
+      setHeaderRoutes(res ?? []);
+    });
+  }, []);
+  
   return (
     <header
       className="
@@ -40,14 +50,14 @@ export default function Header() {
           />
         </div>
 
-        <h1 className="text-(--titulo) font-semibold tracking-wide text-[1.3em] leading-none" >
+        <h1 className="text-(--titulo) font-semibold tracking-wide text-[1.3em] leading-none">
           <i>J</i>ornal <br /> <i>T</i>eresa
         </h1>
       </div>
 
       {/* Desktop menu */}
       <nav className="hidden md:flex gap-10">
-        {["Home", "Notícias", "Sobre"].map((item) => (
+        {headerRoutes.map((item) => (
           <a
             key={item}
             href={`/${item === "Home" ? "" : item.toLowerCase()}`}
@@ -83,13 +93,11 @@ export default function Header() {
           "
         >
           <SheetHeader>
-            <SheetTitle className="text-(--titulo)">
-              Menu
-            </SheetTitle>
+            <SheetTitle className="text-(--titulo)">Menu</SheetTitle>
           </SheetHeader>
 
           <nav className="mt-10 flex flex-col gap-8 text-lg">
-            {["Home", "Notícias", "Sobre"].map((item) => (
+            {headerRoutes.map((item) => (
               <SheetClose asChild key={item}>
                 <a
                   href={`/${item === "Home" ? "" : item.toLowerCase()}`}
@@ -108,5 +116,5 @@ export default function Header() {
         </SheetContent>
       </Sheet>
     </header>
-  )
+  );
 }
