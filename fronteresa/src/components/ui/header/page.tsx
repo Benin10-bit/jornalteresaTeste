@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sheet";
 import { isAdminActions } from "@/actions/isAdminActions/isAdminActions";
 import { useEffect, useState } from "react";
+import './style.css'
 
 export default function Header() {
   const [headerRoutes, setHeaderRoutes] = useState<string[]>([]);
@@ -86,26 +87,28 @@ export default function Header() {
         <SheetContent
           side="right"
           className="
-            bg-(--background)
+            bg-(--background)/80
+            backdrop-blur-lg
             border-l border-(--bordas)
             text-(--text)
-            animate-in slide-in-from-right duration-300
+            slide-from-right
           "
         >
           <SheetHeader>
             <SheetTitle className="text-(--titulo)">Menu</SheetTitle>
           </SheetHeader>
 
-          <nav className="mt-10 flex flex-col gap-8 text-lg">
+          <nav className="mt-10 flex flex-col gap-4 text-lg">
             {headerRoutes.map((item) => (
               <SheetClose asChild key={item}>
                 <a
                   href={`/${item === "Home" ? "" : item.toLowerCase()}`}
+                  data-text={item}
                   className="
                     text-(--links)
+                    text-center py-2
                     transition-all duration-200
-                    hover:text-(--hover)
-                    hover:translate-x-1
+                    header-item-hover-effect
                   "
                 >
                   {item}
