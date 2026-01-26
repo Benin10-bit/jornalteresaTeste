@@ -1,44 +1,40 @@
 import { NextRequest, NextResponse } from "next/server";
+import { jwtDecode } from "jwt-decode";
 
-const publicRoutes = [
-  { route: "/sign-in", whenAuthenticated: "redirect" },
-  { route: "/sign-up", whenAuthenticated: "redirect" },
-  { route: "/c", whenAuthenticated: "next" },
-] as const;
-
-
-const REDIRECT_WHEN_NOT_AUTHENTICATED = "/sign-in";
+type JwtPayload = {
+  userId: string;
+  email: string;
+  role: string;
+  exp: number;
+  iat: number;
+};
 
 export function proxy(request: NextRequest) {
-/*   const url = request.nextUrl.pathname;
-  const publicRoute = publicRoutes.find((route) => route.route == url);
-  const token = request.cookies.get("auth_token");
+  const pathname = request.nextUrl.pathname;
 
-  if (!token && !publicRoute) {
-    const url = request.nextUrl.clone();
-    url.pathname = REDIRECT_WHEN_NOT_AUTHENTICATED;
-
-    return NextResponse.redirect(url);
-  }
-
-  if (token && publicRoute) {
-    if (publicRoute.whenAuthenticated != "next") {
-      const url = request.nextUrl.clone();
-      url.pathname = "/";
-
-      return NextResponse.redirect(url);
-    }
-  }
-
-  if (token && !publicRoute) {
+  if (!pathname.startsWith("/panel")) {
     return NextResponse.next();
-  } */
+  }
 
-  return NextResponse.next();
+  const rawToken = request.cookies.get("auth_token")?.value;
+
+  if (!rawToken) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  try {
+    const payload = jwtDecode<JwtPayload>(decodeURIComponent(rawToken));
+
+    if (payload.role !== "ADMIN") {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+
+    return NextResponse.next();
+  } catch {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
 }
 
 export const config = {
-  matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:png|jpg|jpeg|svg|webp|ico|css|js)).*)",
-  ],
+  matcher: ["/panel", "/panel/:path*"],
 };

@@ -11,19 +11,23 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { isAdminActions } from "@/actions/isAdminActions/isAdminActions";
+import { isAdminActions, isAdminRoutesActions } from "@/actions/isAdminActions/isAdminActions";
 import { useEffect, useState } from "react";
-import './style.css'
+import "./style.css";
+import Link, { useLinkStatus } from "next/link";
+
+type Routes = Record<string, string>;
 
 export default function Header() {
-  const [headerRoutes, setHeaderRoutes] = useState<string[]>([]);
+  const [headerRoutes, setHeaderRoutes] = useState<Routes>({});
+  const { pending } = useLinkStatus();
 
   useEffect(() => {
-    isAdminActions().then((res) => {
-      setHeaderRoutes(res ?? []);
+    isAdminRoutesActions().then((res) => {
+      setHeaderRoutes(res);
     });
   }, []);
-  
+
   return (
     <header
       className="
@@ -58,10 +62,11 @@ export default function Header() {
 
       {/* Desktop menu */}
       <nav className="hidden md:flex gap-10">
-        {headerRoutes.map((item) => (
-          <a
-            key={item}
-            href={`/${item === "Home" ? "" : item.toLowerCase()}`}
+        {Object.entries(headerRoutes).map(([label, path]) => (
+          <Link
+            prefetch={false}
+            key={label}
+            href={path}
             className="
               relative text-(--links)
               transition-colors duration-200
@@ -73,8 +78,9 @@ export default function Header() {
               hover:after:w-full
             "
           >
-            {item}
-          </a>
+            {label}{" "}
+            {pending && <span className="animate-pulse text-(--hover)">.</span>}
+          </Link>
         ))}
       </nav>
 
@@ -99,20 +105,21 @@ export default function Header() {
           </SheetHeader>
 
           <nav className="mt-10 flex flex-col gap-4 text-lg">
-            {headerRoutes.map((item) => (
-              <SheetClose asChild key={item}>
-                <a
-                  href={`/${item === "Home" ? "" : item.toLowerCase()}`}
-                  data-text={item}
+            {Object.entries(headerRoutes).map(([label, path]) => (
+              <SheetClose asChild key={label}>
+                <Link
+                  prefetch={false}
+                  href={path}
+                  data-text={label}
                   className="
-                    text-(--links)
-                    text-center py-2
-                    transition-all duration-200
-                    header-item-hover-effect
-                  "
+          text-(--links)
+          text-center py-2
+          transition-all duration-200
+          header-item-hover-effect
+        "
                 >
-                  {item}
-                </a>
+                  {label}
+                </Link>
               </SheetClose>
             ))}
           </nav>
