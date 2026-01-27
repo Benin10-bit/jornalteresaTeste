@@ -11,10 +11,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { isAdminActions, isAdminRoutesActions } from "@/actions/isAdminActions/isAdminActions";
+import { isAdminRoutesActions } from "@/actions/isAdminActions/isAdminActions";
 import { useEffect, useState } from "react";
 import "./style.css";
 import Link, { useLinkStatus } from "next/link";
+import TooltipButton from "../loginButton/page";
+import LoginButton from "../loginButton/page";
 
 type Routes = Record<string, string>;
 
@@ -31,7 +33,7 @@ export default function Header() {
   return (
     <header
       className="
-        rounded-[2em]
+        rounded-[1.5em]
         sticky top-[0.5em] z-50 w-[98%]
         mx-auto
         flex items-center justify-between
@@ -62,12 +64,15 @@ export default function Header() {
 
       {/* Desktop menu */}
       <nav className="hidden md:flex gap-10">
-        {Object.entries(headerRoutes).map(([label, path]) => (
-          <Link
-            prefetch={false}
-            key={label}
-            href={path}
-            className="
+        {Object.entries(headerRoutes).map(([label, path]) =>
+          label === "logout" ? null : label === "Login" ? (
+            <LoginButton key={label} href={path} label={label} />
+          ) : (
+            <Link
+              prefetch={false}
+              key={label}
+              href={path}
+              className="
               relative text-(--links)
               transition-colors duration-200
               hover:text-(--hover)
@@ -77,11 +82,14 @@ export default function Header() {
               after:transition-all after:duration-300
               hover:after:w-full
             "
-          >
-            {label}{" "}
-            {pending && <span className="animate-pulse text-(--hover)">.</span>}
-          </Link>
-        ))}
+            >
+              {label}{" "}
+              {pending && (
+                <span className="animate-pulse text-(--hover)">.</span>
+              )}
+            </Link>
+          ),
+        )}
       </nav>
 
       {/* Mobile menu */}
