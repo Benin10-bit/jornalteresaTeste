@@ -63,7 +63,7 @@ export default function Header() {
       </div>
 
       {/* Desktop menu */}
-      <nav className="hidden md:flex gap-10">
+      <nav className="hidden md:flex gap-10 items-center">
         {Object.entries(headerRoutes).map(([label, path]) =>
           label === "logout" ? null : label === "Login" ? (
             <LoginButton key={label} href={path} label={label} />
@@ -109,7 +109,7 @@ export default function Header() {
           "
         >
           <SheetHeader>
-            <SheetTitle className="text-(--titulo)">Menu</SheetTitle>
+            <SheetTitle className="text-(--titulo) text-center">Menu</SheetTitle>
           </SheetHeader>
 
           <nav className="mt-10 flex flex-col gap-4 text-lg">
