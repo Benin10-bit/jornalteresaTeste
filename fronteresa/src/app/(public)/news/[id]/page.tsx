@@ -10,10 +10,8 @@ export default async function News({
   console.log(resolvedParams)
   
   return (
-      <Suspense fallback={<div>Carregando notícia...</div>}>
         <div>
             <NewsServer id={resolvedParams.id} />
         </div>
-      </Suspense>
   );
 }

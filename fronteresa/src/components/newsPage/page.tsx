@@ -18,33 +18,12 @@ function NewsPage({ news }: NewsPageProps) {
     return labels[type];
   };
 
-  // Coleta todas as imagens disponíveis
-  const allImages: string[] = [];
-  news.arquivos.forEach((arquivo) => {
-    if (arquivo.image1) allImages.push(arquivo.image1);
-    if (arquivo.image2) allImages.push(arquivo.image2);
-    if (arquivo.image3) allImages.push(arquivo.image3);
-    if (arquivo.image4) allImages.push(arquivo.image4);
-    if (arquivo.image5) allImages.push(arquivo.image5);
-  });
+
 
   return (
     <article className="min-h-screen bg-var(--background)] text-var(--text)]">
       <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        {/* Imagem Principal */}
-        {allImages.length > 0 && (
-          <div className="mb-8 rounded-lg overflow-hidden shadow-var(--shadow)]">
-            <div className="relative w-full aspect-video bg-var(--cards)]">
-              <Image
-                src={allImages[0]}
-                alt={news.title}
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </div>
-        )}
+
 
         {/* Cabeçalho */}
         <header className="mb-8">
@@ -74,24 +53,7 @@ function NewsPage({ news }: NewsPageProps) {
         </div>
 
         {/* Imagens Adicionais */}
-        {allImages.length > 1 && (
-          <div className="mb-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {allImages.slice(1).map((image, index) => (
-              <div
-                key={index}
-                className="relative w-full aspect-video rounded-lg overflow-hidden shadow-var(--shadow)] bg-var(--cards)]"
-              >
-                <Image
-                  src={image}
-                  alt={`${news.title} - Imagem ${index + 2}`}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        )}
-
+  
         {/* Rodapé - Autor */}
         <footer className="mt-12 pt-8 border-t-2 border-var(--bordas)]">
           <div className="flex items-center justify-between">
