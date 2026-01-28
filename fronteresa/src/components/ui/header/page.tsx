@@ -112,8 +112,12 @@ export default function Header() {
             <SheetTitle className="text-(--titulo) text-center">Menu</SheetTitle>
           </SheetHeader>
 
-          <nav className="mt-10 flex flex-col gap-4 text-lg">
-            {Object.entries(headerRoutes).map(([label, path]) => (
+          <nav className="mt-10 flex flex-col items-center gap-4 text-lg h-full mobile-nav">
+            {Object.entries(headerRoutes).map(([label, path]) => 
+            label === "logout" ? null : label === "Login" ? (
+              <LoginButton key={label} href={path} label={label} />
+              
+            ) : (
               <SheetClose asChild key={label}>
                 <Link
                   prefetch={false}
@@ -128,6 +132,7 @@ export default function Header() {
                 >
                   {label}
                 </Link>
+                
               </SheetClose>
             ))}
           </nav>

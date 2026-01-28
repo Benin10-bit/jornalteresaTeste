@@ -23,6 +23,13 @@
     transform: scaleY(1);
 }
 
+nav.mobile-nav .login-button {
+    position: absolute;
+    left: 50%;
+    bottom: 2em;
+    transform: translate(-50%, -50%);
+}
+
 .slide-from-right[data-state="open"] {
     animation: slideIn 200ms ease-in-out 1 forwards;
 }

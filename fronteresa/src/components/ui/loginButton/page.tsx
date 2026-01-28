@@ -10,19 +10,22 @@ export default function LoginButton({
       href={href}
       className="
         flex items-center gap-2
+        w-24
+        max-w-4/5
         px-4 py-2
         rounded-md
         text-sm font-medium
-        text-[var(--cards)]
-        bg-[var(--botoes)]
-        shadow-[var(--shadow)]
+        text-(--cards)
+        bg-(--botoes)
+        shadow-(--shadow)
         transition-colors duration-200
-        hover:bg-[var(--hover)]
+        hover:bg-(--hover)
         focus-visible:outline-none
         focus-visible:ring-2
-        focus-visible:ring-[var(--links)]
+        focus-visible:ring-(--links)
         focus-visible:ring-offset-2
-        focus-visible:ring-offset-[var(--background)]
+        focus-visible:ring-offset-(--background)
+        login-button
       "
     >
       <svg
