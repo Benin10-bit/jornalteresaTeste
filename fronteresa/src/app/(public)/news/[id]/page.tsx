@@ -1,12 +1,19 @@
 import { Suspense } from "react";
 import NewsServer from "./server";
 
-export default function News({id}:  {id: string}) {
+export default async function News({ 
+  params
+ }: {
+  params: Promise<{id: string}>
+}) {
+  const resolvedParams = await params;
+  console.log(resolvedParams)
+  
   return (
-    <div>
       <Suspense fallback={<div>Carregando notícia...</div>}>
-        <NewsServer params={{id}} />
+        <div>
+            <NewsServer id={resolvedParams.id} />
+        </div>
       </Suspense>
-    </div>
   );
 }
