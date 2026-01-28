@@ -1,15 +1,12 @@
-"use client";
+import { Suspense } from "react";
+import NewsServer from "./server";
 
-import Header from "@/components/ui/header/page";
-import { useParams } from "next/navigation";
-
-export default function NewsPage() {
-  const params = useParams<{ id: string }>();
-  console.log(params);
+export default function News({id}:  {id: string}) {
   return (
     <div>
-      <Header />
-      <h1>{params.id} aaa</h1>
+      <Suspense fallback={<div>Carregando notícia...</div>}>
+        <NewsServer params={{id}} />
+      </Suspense>
     </div>
   );
 }

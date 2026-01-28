@@ -53,7 +53,7 @@ newsRouter.get("/news/show-news", NewsController.showNews);
  *       404:
  *         description: Notícia não encontrada
  */
-newsRouter.get("/news/show-news/:id", NewsController.showNewsById);
+newsRouter.get("/news/search-news/:id", NewsController.showNewsById);
 
 /**
  * @swagger
