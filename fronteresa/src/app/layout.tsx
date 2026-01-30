@@ -34,6 +34,7 @@ export default function RootLayout({
     <html lang="pt-br" suppressHydrationWarning>
       <body className={`${libre.variable} ${playFair.variable}`}>
         <ThemeContext>
+          <Header />
           {children}
           </ThemeContext>
       </body>

@@ -20,6 +20,7 @@ public static async getAllNews() {
     try {
       const news = await prisma.noticias.findUnique({
         where: { id },
+        include: { arquivos: true },
       });
       return news;
     } catch (error) {

@@ -1,6 +1,7 @@
 import { Suspense } from "react";
-import NewsServer from "./server";
 import Spinner from "@/components/ui/loaders/Spinner/page";
+import { searchNewsActions } from "@/actions/SearchNews/searchNewsActions";
+import NewsDetail from "@/components/newsPage/page";
 
 export default async function News({
   params,
@@ -9,10 +10,12 @@ export default async function News({
 }) {
   const resolvedParams = await params;
 
+  const noticia = searchNewsActions(resolvedParams.id);
+
   return (
     <div>
       <Suspense fallback={<Spinner />}>
-        <NewsServer id={resolvedParams.id} />
+        <NewsDetail news={await noticia} />
       </Suspense>
     </div>
   );
