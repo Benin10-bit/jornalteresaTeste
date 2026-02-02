@@ -36,7 +36,7 @@ function NewsDetail({ news }: NewsDetailProps) {
             {/* Autor e Metadata */}
             <div className="flex items-center gap-4 mb-8 pb-6 border-b-2 border-[var(--bordas)]">
               <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-[var(--destaques)] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-[var(--botoes)] flex items-center justify-center">
                   <span className="text-[var(--background)] font-semibold text-lg">
                     {news.author.charAt(0).toUpperCase()}
                   </span>
@@ -45,7 +45,7 @@ function NewsDetail({ news }: NewsDetailProps) {
                   <p className="text-[var(--text)] font-medium">
                     {news.author}
                   </p>
-                  <p className="text-[var(--destaques)] text-sm capitalize">
+                  <p className="text-[var(--botoes)] text-sm capitalize">
                     {news.newstype}
                   </p>
                 </div>
@@ -64,8 +64,8 @@ function NewsDetail({ news }: NewsDetailProps) {
               prose-strong:text-[var(--titulo)]
               prose-ul:text-[var(--text)]
               prose-ol:text-[var(--text)]
-              prose-blockquote:border-l-[var(--destaques)]
-              prose-blockquote:text-[var(--destaques)]
+              prose-blockquote:border-l-[var(--botoes)]
+              prose-blockquote:text-[var(--botoes)]
               prose-img:rounded-lg
               prose-img:shadow-[var(--shadow)]"
             >
@@ -77,7 +77,7 @@ function NewsDetail({ news }: NewsDetailProps) {
           <div className="lg:col-span-1">
             <div className="sticky top-8">
               <div className="bg-[var(--cards)] rounded-lg p-6 shadow-[var(--shadow)] border border-[var(--bordas)]">
-                <h2 className="text-2xl font-bold text-[var(--titulo)] mb-4 pb-3 border-b-2 border-[var(--destaques)]">
+                <h2 className="text-2xl font-bold text-[var(--titulo)] mb-4 pb-3 border-b-2 border-[var(--botoes)]">
                   Resumo
                 </h2>
                 <p className="text-[var(--text)] leading-relaxed">
@@ -88,7 +88,7 @@ function NewsDetail({ news }: NewsDetailProps) {
                 <div className="mt-6 pt-6 border-t border-[var(--bordas)]">
                   <div className="space-y-3">
                     <div>
-                      <span className="text-sm text-[var(--destaques)] font-semibold uppercase tracking-wide">
+                      <span className="text-sm text-[var(--botoes)] font-semibold uppercase tracking-wide">
                         Tipo
                       </span>
                       <p className="text-[var(--text)] capitalize mt-1">
@@ -96,7 +96,7 @@ function NewsDetail({ news }: NewsDetailProps) {
                       </p>
                     </div>
                     <div>
-                      <span className="text-sm text-[var(--destaques)] font-semibold uppercase tracking-wide">
+                      <span className="text-sm text-[var(--botoes)] font-semibold uppercase tracking-wide">
                         Autor
                       </span>
                       <p className="text-[var(--text)] mt-1">{news.author}</p>
@@ -106,7 +106,7 @@ function NewsDetail({ news }: NewsDetailProps) {
 
                 {/* Badge do Tipo de Conteúdo */}
                 <div className="mt-6">
-                  <span className="inline-block bg-[var(--destaques)] text-[var(--background)] px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide">
+                  <span className="inline-block bg-[var(--botoes)] text-[var(--background)] px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide">
                     {news.newstype}
                   </span>
                 </div>
