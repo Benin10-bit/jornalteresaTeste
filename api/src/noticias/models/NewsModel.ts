@@ -3,18 +3,16 @@ import ApiError from "../../middlewares/errors/ApiError.js";
 import type Files from "../services/entities/Files.js";
 
 export default class NewsModel {
-
-public static async getAllNews() {
-  return prisma.noticias.findMany({
-    orderBy: {
-    created_at: "asc",
-  },
-    include: {
-      arquivos: true, // ou files — depende do nome no schema.prisma
-    },
-  });
-}
-
+  public static async getAllNews() {
+    return prisma.noticias.findMany({
+      orderBy: {
+        created_at: "asc",
+      },
+      include: {
+        arquivos: true, // ou files — depende do nome no schema.prisma
+      },
+    });
+  }
 
   public static async getById(id: string) {
     try {
@@ -34,7 +32,7 @@ public static async getAllNews() {
     body: string,
     author: string,
     newstype: string,
-    files: Files
+    files: Files,
   ) {
     return prisma.noticias.create({
       data: {
@@ -63,7 +61,7 @@ public static async getAllNews() {
     summary: string,
     body: string,
     author: string,
-    newstype: string
+    newstype: string,
   ) {
     try {
       return prisma.noticias.update({
@@ -81,13 +79,13 @@ public static async getAllNews() {
     }
   }
 
-  public static async likenews(id: string) {
+  public static async likenews(id: string, action: "like" | "unlike") {
     try {
       const news = await prisma.noticias.update({
         where: { id },
         data: {
           curtidas: {
-            increment: 1,
+            [action === "like" ? "increment" : "decrement"]: 1,
           },
         },
       });

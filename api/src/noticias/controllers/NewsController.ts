@@ -89,9 +89,10 @@ export default class NewsController {
     next: NextFunction
   ) {
     const { id } = req.params;
+    const { action } = req.body;
 
     try {
-      const news = await NewsService.likenews(id?.toString() || "");
+      const news = await NewsService.likenews(id?.toString() || "", action);
       res.status(200).json({ ok: "noticia curtida com sucesso", body: news });
     } catch (error) {
       return next(error);

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeContext } from "@/context/themeContext/provider";
-import Header from "@/components/ui/header/page";
 import { Libre_Baskerville, Playfair_Display } from "next/font/google";
 
 const libre = Libre_Baskerville({
@@ -34,7 +33,6 @@ export default function RootLayout({
     <html lang="pt-br" suppressHydrationWarning>
       <body className={`${libre.variable} ${playFair.variable}`}>
         <ThemeContext>
-          <Header />
           {children}
           </ThemeContext>
       </body>

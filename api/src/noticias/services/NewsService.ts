@@ -176,9 +176,9 @@ export default class NewsService {
     }
   }
 
-  public static async likenews(id: string) {
+  public static async likenews(id: string, action: "like" | "unlike") {
     try {
-      return await NewsModel.likenews(id);
+      return await NewsModel.likenews(id, action);
     } catch (error) {
       if (error instanceof ApiError) {
         throw error; // mantém status e mensagem

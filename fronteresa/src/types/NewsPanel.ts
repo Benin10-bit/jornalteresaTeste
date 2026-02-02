@@ -6,6 +6,7 @@ export interface News {
   summary: string;
   author: string;
   body: string;
+  curtidas: number;
   arquivos: Array<{
     id?: string,
     image1: string,
