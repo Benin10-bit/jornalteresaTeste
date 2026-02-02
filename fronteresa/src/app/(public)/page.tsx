@@ -1,8 +1,9 @@
-import TestePage from "@/components/catalogContent/page";
 import { HeroComponent } from "@/components/heroComponent/page";
 import LoadingGrid from "@/components/loadingGrid/page";
 import Header from "@/components/ui/header/page";
-import { Suspense } from "react";
+import { lazy, Suspense } from "react";
+
+const TestePage = lazy(() => import("@/components/catalogContent/page"));
 
 export default function CatalogPage() {
   return (

@@ -11,6 +11,8 @@ interface NewsDetailProps {
 function NewsDetail({ news }: NewsDetailProps) {
   const mainImage = news.arquivos?.[0]?.image1;
 
+  console.log("Rendering NewsDetail for news ID:", news);
+
   return (
     <div>
       <Header />

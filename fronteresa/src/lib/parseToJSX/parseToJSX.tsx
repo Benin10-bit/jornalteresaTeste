@@ -1,5 +1,6 @@
 import { News } from "@/types/NewsPanel";
 import { JSX } from "react";
+import { isVideo } from "../isVideo/isVideo";
 
 export function parseBodyToJSX(
   body: string,
@@ -8,8 +9,8 @@ export function parseBodyToJSX(
   if (!body) return null;
 
   const lines = body.split("\n");
-  let imageIndex = 1;
-  const elements = [];
+  let imageIndex = 2;
+  const elements: any = [];
   let currentList: string[] = [];
   let key = 0;
 
@@ -100,29 +101,23 @@ export function parseBodyToJSX(
       currentList = [];
     }
 
-    // Imagens
+    // achata todos os arquivos (image1...image5)
+
+    const arquivos = noticia.arquivos?.[0];
+
     if (line === "/imagem") {
-      const imgUrl = noticia[`image${imageIndex}` as keyof News];
+      const fileUrl = arquivos?.[`image${imageIndex}` as keyof typeof arquivos];
+
       imageIndex++;
-      if (imgUrl && typeof imgUrl === "string") {
-        elements.push(
-          <img
-            key={`img-${key++}`}
-            src={imgUrl}
-            alt={`imagem${imageIndex - 1}`}
-            style={{
-              maxWidth: "100%",
-              width: "100%",
-              height: "auto",
-              marginTop: "1.5rem",
-              marginBottom: "1.5rem",
-              borderRadius: "15px",
-              objectFit: "cover",
-            }}
-            loading="lazy"
-          />,
-        );
+
+      if (!fileUrl || typeof fileUrl !== "string") return;
+
+      if (isVideo(fileUrl)) {
+        elements.push(<video key={`video-${key++}`} src={fileUrl} controls />);
+      } else {
+        elements.push(<img key={`img-${key++}`} src={fileUrl} />);
       }
+
       return;
     }
 
