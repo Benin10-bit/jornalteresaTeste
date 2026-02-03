@@ -24,7 +24,7 @@ declare global {
 export function authMiddleware(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   const token = req.cookies?.auth_token;
 
@@ -40,4 +40,14 @@ export function authMiddleware(
   } catch {
     return res.status(401).json({ message: "Token inválido ou expirado" });
   }
+}
+
+export function isAdmin(req: Request, res: Response, next: NextFunction) {
+  const decoded = req.user;
+
+  if (decoded?.role !== "ADMIN") {
+    return res.status(401).json({ message: "Usuário não autorizado" });
+  }
+
+  next();
 }

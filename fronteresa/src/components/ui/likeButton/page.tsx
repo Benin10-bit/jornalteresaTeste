@@ -1,6 +1,7 @@
 "use client";
 
 import { API_MAIN_ROUTE } from "@/constants/apiRoute";
+import { toastError } from "@/lib/toast/toast";
 import { Heart } from "lucide-react";
 import { useState, useTransition, useEffect } from "react";
 
@@ -72,10 +73,15 @@ export function LikeButton({ newsId, curtidas }: LikeButtonProps) {
         const res = await fetch(`${API_MAIN_ROUTE}/news/like-news/${newsId}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
+          credentials: "include",
           body: JSON.stringify({
             action: willLike ? "like" : "unlike",
           }),
         });
+
+        if (res.status === 401){
+          throw new Error("É necessário estar em uma conta para curtir notícias");
+        }
 
         if (!res.ok) throw new Error("Erro no backend");
 
@@ -94,8 +100,9 @@ export function LikeButton({ newsId, curtidas }: LikeButtonProps) {
         // Atualiza o contador com o valor do backend para garantir consistência  
 
         setLikeCount(data.body.curtidas);
-      } catch (err) {
+      } catch (err: unknown) {
         // rollback
+        toastError(err instanceof Error ? err.message : "Tente novamente");
         setIsLiked(!willLike);
         setLikeCount((prev) => Math.max(0, willLike ? prev - 1 : prev + 1));
         console.error(err);

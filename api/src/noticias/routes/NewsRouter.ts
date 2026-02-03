@@ -1,6 +1,7 @@
 import express from "express";
 import { upload } from "../../middlewares/upload.js";
 import NewsController from "../controllers/NewsController.js";
+import { authMiddleware, isAdmin } from "../../middlewares/auth.js";
 
 const newsRouter = express.Router();
 
@@ -104,6 +105,8 @@ newsRouter.get("/news/search-news/:id", NewsController.showNewsById);
  */
 newsRouter.post(
   "/news/create-news",
+  authMiddleware,
+  isAdmin,
   upload.fields([
     { name: "image1", maxCount: 1 },
     { name: "image2", maxCount: 1 },
@@ -111,7 +114,7 @@ newsRouter.post(
     { name: "image4", maxCount: 1 },
     { name: "image5", maxCount: 1 },
   ]),
-  NewsController.createNews
+  NewsController.createNews,
 );
 
 /**
@@ -148,7 +151,12 @@ newsRouter.post(
  *       404:
  *         description: Notícia não encontrada
  */
-newsRouter.put("/news/update-news/:id", NewsController.updateNews);
+newsRouter.put(
+  "/news/update-news/:id",
+  authMiddleware,
+  isAdmin,
+  NewsController.updateNews,
+);
 
 /**
  * @swagger
@@ -169,7 +177,11 @@ newsRouter.put("/news/update-news/:id", NewsController.updateNews);
  *       404:
  *         description: Notícia não encontrada
  */
-newsRouter.patch("/news/like-news/:id", NewsController.likenews);
+newsRouter.patch(
+  "/news/like-news/:id",
+  authMiddleware,
+  NewsController.likenews,
+);
 
 /**
  * @swagger
@@ -190,6 +202,11 @@ newsRouter.patch("/news/like-news/:id", NewsController.likenews);
  *       404:
  *         description: Notícia não encontrada
  */
-newsRouter.delete("/news/delete-news/:id", NewsController.deleteNews);
+newsRouter.delete(
+  "/news/delete-news/:id",
+  authMiddleware,
+  isAdmin,
+  NewsController.deleteNews,
+);
 
 export default newsRouter;
