@@ -79,8 +79,10 @@ export function LikeButton({ newsId, curtidas }: LikeButtonProps) {
           }),
         });
 
-        if (res.status === 401){
-          throw new Error("É necessário estar em uma conta para curtir notícias");
+        if (res.status === 401) {
+          throw new Error(
+            "É necessário estar em uma conta para curtir notícias",
+          );
         }
 
         if (!res.ok) throw new Error("Erro no backend");
@@ -97,7 +99,7 @@ export function LikeButton({ newsId, curtidas }: LikeButtonProps) {
           setTimeout(() => setIsAnimating(false), 1000);
         }
 
-        // Atualiza o contador com o valor do backend para garantir consistência  
+        // Atualiza o contador com o valor do backend para garantir consistência
 
         setLikeCount(data.body.curtidas);
       } catch (err: unknown) {
