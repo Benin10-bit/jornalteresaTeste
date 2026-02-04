@@ -16,14 +16,14 @@ function NewsDetail({ news }: NewsDetailProps) {
   return (
     <div>
       <Header />
-      <article className="min-h-screen bg-[var(--background)] py-8 px-4">
+      <article className="min-h-screen bg-(--background) py-8 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Conteúdo Principal */}
             <div className="lg:col-span-2">
               {/* Imagem Principal */}
               {mainImage && (
-                <div className="relative w-full h-[400px] md:h-[500px] mb-8 rounded-lg overflow-hidden shadow-[var(--shadow)]">
+                <div className="relative w-full h-100 md:h-125 mb-8 rounded-lg overflow-hidden shadow-(--shadow)">
                   <Image
                     src={mainImage}
                     alt={news.title}
@@ -76,8 +76,8 @@ function NewsDetail({ news }: NewsDetailProps) {
               </div>
             </div>
             {/* Sidebar - Resumo */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-8">
+            <div className="lg:col-span-1 order-first lg:order-2">
+              <div className="sticky top-28">
                 <div className="bg-[var(--cards)] rounded-lg p-6 shadow-[var(--shadow)] border border-[var(--bordas)] space-y-6">
                   {/* Cabeçalho */}
                   <div className="flex items-center justify-between gap-4">
