@@ -124,8 +124,13 @@ function GalleryItem({
             <img
                 src={image.url}
                 alt={image.title}
-                onLoad={() => setImageLoaded(true)}
-                className={`w-full transition-all duration-500 ${imageLoaded ? "opacity-100" : "opacity-0"} group-hover:scale-110`}
+                onLoad={() => { setImageLoaded(true); }}
+                ref={(img) => {
+                    if (img?.complete) {
+                        setImageLoaded(true);
+                    }
+                }}
+                className={`w-full transition-all duration-500 ${imageLoaded ? "opacity-100" : "opacity-0"} group-hover:scale-110 group-duration-200`}
                 style={{ height: "auto", objectFit: "contain" }}
             />
 
