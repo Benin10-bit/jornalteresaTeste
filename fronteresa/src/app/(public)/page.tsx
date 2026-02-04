@@ -1,5 +1,6 @@
 import { HeroComponent } from "@/components/heroComponent/page";
 import LoadingGrid from "@/components/loadingGrid/page";
+import Footer from "@/components/ui/footer/page";
 import Header from "@/components/ui/header/page";
 import { lazy, Suspense } from "react";
 
@@ -12,8 +13,11 @@ export default function CatalogPage() {
       <div className="mt-8">
         <HeroComponent />
       </div>
-      <Suspense fallback={<LoadingGrid quantity={12} />}>
+      <Suspense fallback={<LoadingGrid quantity={6} />}>
         <TestePage />
+      </Suspense>
+      <Suspense>
+        <Footer />
       </Suspense>
     </div>
   );

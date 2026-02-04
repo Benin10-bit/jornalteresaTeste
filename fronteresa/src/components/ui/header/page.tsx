@@ -1,38 +1,29 @@
 "use client";
 
-import Image from "next/image";
 import { Menu } from "lucide-react";
+import Image from "next/image";
 
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import { isAdminRoutesActions } from "@/actions/isAdminActions/isAdminActions";
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import "./style.css";
-import Link, { useLinkStatus } from "next/link";
-import TooltipButton from "../loginButton/page";
 import LoginButton from "../loginButton/page";
+import "./style.css";
 
 type Routes = Record<string, string>;
 
 export default function Header() {
-  const [headerRoutes, setHeaderRoutes] = useState<Routes>({});
-  const { pending } = useLinkStatus();
+    const [headerRoutes, setHeaderRoutes] = useState<Routes>({});
 
-  useEffect(() => {
-    isAdminRoutesActions().then((res) => {
-      setHeaderRoutes(res);
-    });
-  }, []);
+    useEffect(() => {
+        isAdminRoutesActions().then(res => {
+            setHeaderRoutes(res);
+        });
+    }, []);
 
-  return (
-    <header
-      className="
+    return (
+        <header
+            className="
         rounded-[1.5em]
         sticky top-[0.5em] z-50 w-[98%]
         mx-auto
@@ -44,35 +35,29 @@ export default function Header() {
         backdrop-blur
         transition-colors
       "
-    >
-      {/* Logo + nome */}
-      <div className="flex items-center gap-3">
-        <div className="relative w-16 h-16">
-          <Image
-            src="/logo_teresa.png"
-            alt="Logo Teresa"
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
+        >
+            {/* Logo + nome */}
+            <div className="flex items-center gap-3">
+                <div className="relative w-16 h-16">
+                    <Image src="/logo_teresa.png" alt="Logo Teresa" fill className="object-contain" priority />
+                </div>
 
-        <h1 className="text-(--titulo) font-semibold tracking-wide text-[1.3em] leading-none">
-          <i>J</i>ornal <br /> <i>T</i>eresa
-        </h1>
-      </div>
+                <h1 className="text-(--titulo) font-semibold tracking-wide text-[1.3em] leading-none">
+                    <i>J</i>ornal <br /> <i>T</i>eresa
+                </h1>
+            </div>
 
-      {/* Desktop menu */}
-      <nav className="hidden md:flex gap-10 items-center">
-        {Object.entries(headerRoutes).map(([label, path]) =>
-          label === "logout" ? null : label === "Login" ? (
-            <LoginButton key={label} href={path} label={label} />
-          ) : (
-            <Link
-              prefetch={false}
-              key={label}
-              href={path}
-              className="
+            {/* Desktop menu */}
+            <nav className="hidden md:flex gap-10 items-center">
+                {Object.entries(headerRoutes).map(([label, path]) =>
+                    label === "logout" ? null : label === "Login" ? (
+                        <LoginButton key={label} href={path} label={label} />
+                    ) : (
+                        <Link
+                            prefetch={false}
+                            key={label}
+                            href={path}
+                            className="
               relative text-(--links)
               transition-colors duration-200
               hover:text-(--hover)
@@ -82,62 +67,58 @@ export default function Header() {
               after:transition-all after:duration-300
               hover:after:w-full
             "
-            >
-              {label}{" "}
-              {pending && (
-                <span className="animate-pulse text-(--hover)">.</span>
-              )}
-            </Link>
-          ),
-        )}
-      </nav>
+                        >
+                            {label}{" "}
+                        </Link>
+                    ),
+                )}
+            </nav>
 
-      {/* Mobile menu */}
-      <Sheet>
-        <SheetTrigger className="md:hidden">
-          <Menu className="w-7 h-7 text-(--text) transition-transform hover:scale-110" />
-        </SheetTrigger>
+            {/* Mobile menu */}
+            <Sheet>
+                <SheetTrigger className="md:hidden">
+                    <Menu className="w-7 h-7 text-(--text) transition-transform hover:scale-110" />
+                </SheetTrigger>
 
-        <SheetContent
-          side="right"
-          className="
+                <SheetContent
+                    side="right"
+                    className="
             bg-(--background)/80
             backdrop-blur-lg
             border-l border-(--bordas)
             text-(--text)
             slide-from-right
           "
-        >
-          <SheetHeader>
-            <SheetTitle className="text-(--titulo) text-center">Menu</SheetTitle>
-          </SheetHeader>
+                >
+                    <SheetHeader>
+                        <SheetTitle className="text-(--titulo) text-center">Menu</SheetTitle>
+                    </SheetHeader>
 
-          <nav className="mt-10 flex flex-col items-center gap-4 text-lg h-full mobile-nav">
-            {Object.entries(headerRoutes).map(([label, path]) => 
-            label === "logout" ? null : label === "Login" ? (
-              <LoginButton key={label} href={path} label={label} />
-              
-            ) : (
-              <SheetClose asChild key={label}>
-                <Link
-                  prefetch={false}
-                  href={path}
-                  data-text={label}
-                  className="
+                    <nav className="mt-10 flex flex-col items-center gap-4 text-lg h-full mobile-nav">
+                        {Object.entries(headerRoutes).map(([label, path]) =>
+                            label === "logout" ? null : label === "Login" ? (
+                                <LoginButton key={label} href={path} label={label} />
+                            ) : (
+                                <SheetClose asChild key={label}>
+                                    <Link
+                                        prefetch={false}
+                                        href={path}
+                                        data-text={label}
+                                        className="
           text-(--links)
           text-center py-2
           transition-all duration-200
           header-item-hover-effect
         "
-                >
-                  {label}
-                </Link>
-                
-              </SheetClose>
-            ))}
-          </nav>
-        </SheetContent>
-      </Sheet>
-    </header>
-  );
+                                    >
+                                        {label}
+                                    </Link>
+                                </SheetClose>
+                            ),
+                        )}
+                    </nav>
+                </SheetContent>
+            </Sheet>
+        </header>
+    );
 }
