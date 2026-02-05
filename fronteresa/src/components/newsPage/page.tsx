@@ -112,7 +112,7 @@ function NewsDetail({ news }: NewsDetailProps) {
                 {news.arquivos?.[0] && (
                   <div className="mt-6 space-y-4">
                     {news.arquivos[0].image2 && (
-                      <div className="relative w-full h-48 rounded-lg overflow-hidden shadow-[var(--shadow)]">
+                      <div className="relative w-full h-48 rounded-lg overflow-hidden shadow-[var(--shadow)] hidden lg:block">
                         <Image
                           src={news.arquivos[0].image2}
                           alt="Imagem adicional 2"
@@ -122,7 +122,7 @@ function NewsDetail({ news }: NewsDetailProps) {
                       </div>
                     )}
                     {news.arquivos[0].image3 && (
-                      <div className="relative w-full h-48 rounded-lg overflow-hidden shadow-[var(--shadow)]">
+                      <div className="relative w-full h-48 rounded-lg overflow-hidden shadow-[var(--shadow)] hidden lg:block">
                         <Image
                           src={news.arquivos[0].image3}
                           alt="Imagem adicional 3"
