@@ -11,12 +11,12 @@ interface EmailOptions {
 }
 
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || "smtp.example.com",
-  port: Number(process.env.SMTP_PORT) || 587,
+  host: process.env.SMTP_HOST,
+  port: Number(process.env.SMTP_PORT),
   secure: false, // true se usar porta 465
   auth: {
-    user: process.env.SMTP_USER || "usuario@example.com",
-    pass: process.env.SMTP_PASS || "senha",
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS 
   },
 });
 
@@ -45,7 +45,7 @@ export async function sendEmail({
     const html = template(context);
 
     const info = await transporter.sendMail({
-      from: '"Teresa" <beniciodoamaralneto2019@gmail.com>',
+      from: `"Teresa" <${process.env.SMTP_USER}>`,
       to,
       subject,
       html,
