@@ -1,6 +1,6 @@
 import express, { type Request, type Response } from "express";
-import UserController from "../controllers/UserController.js";
 import { validatePassword } from "../../middlewares/validatePassword.js";
+import UserController from "../controllers/UserController.js";
 
 export const userRouter = express.Router();
 
@@ -40,6 +40,7 @@ export const userRouter = express.Router();
  *       400:
  *         description: Dados inválidos ou usuário já existe
  */
+
 userRouter.post("/user/register", validatePassword, UserController.register);
 
 /**
@@ -88,4 +89,17 @@ userRouter.get("/user/logout", async (req: Request, res: Response) => {
 
   // envia uma resposta ao cliente
   return res.status(200).json({ message: "Logout realizado com sucesso" });
+})
+
+userRouter.get("/user/verify_code", (req: Request, res: Response) => {
+  const code = req.query.code as string;
+  const email = req.query.email as string;
+
+  if (!code || !email) {
+    return res.status(400).json({ error: "code and email are required" });
+  }
+
+  // Aqui você faria a verificação do código...
+  return res.status(200).json({ message: "Code verified successfully" });
 });
+

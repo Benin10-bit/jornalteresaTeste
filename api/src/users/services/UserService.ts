@@ -1,9 +1,8 @@
 import bcrypt from "bcryptjs";
-import type RequestUserRegisterDTO from "../controllers/dtos/RequestUserRegisterDTO.js";
-import ApiError from "../../middlewares/errors/ApiError.js";
-import UserModel from "../models/UserModel.js";
 import jwt from "jsonwebtoken";
-import type User from "./entities/User.js";
+import ApiError from "../../middlewares/errors/ApiError.js";
+import type RequestUserRegisterDTO from "../controllers/dtos/RequestUserRegisterDTO.js";
+import UserModel from "../models/UserModel.js";
 
 export default class UserService {
   public static async registerUser(data: RequestUserRegisterDTO) {

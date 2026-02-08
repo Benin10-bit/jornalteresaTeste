@@ -27,6 +27,15 @@ export default class UserModel {
     }
   }
 
+  public static async getAllUsers(){
+    return await prisma.usuarios.findMany({
+      select:{
+        firstName: true,
+        email: true,
+      }
+    })
+  }
+
   public static async findUserByEmail(email: string) {
     try {
       return await prisma.usuarios.findUnique({
