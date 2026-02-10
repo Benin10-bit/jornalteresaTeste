@@ -24,7 +24,7 @@ function SignupForm() {
       "
     >
       <div className="form-header flex justify-center items-center space-y-4">
-        <div className="relative w-40 h-40">
+        <div className="relative w-30 h-30">
           <Image src={"/logo_teresa.png"} fill alt="logo teresa" />
         </div>
         <hr className="border mr-4.5 rotate-90 w-10 border-(--bordas)" />

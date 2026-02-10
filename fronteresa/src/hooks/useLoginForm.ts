@@ -1,29 +1,27 @@
 "use client";
 
-import { toastSuccess, toastError } from "@/lib/toast/toast";
 import { loginAction } from "@/actions/LoginActions/loginActions";
+import { toastError, toastSuccess } from "@/lib/toast/toast";
 import { useState } from "react";
 
 export function useLoginForm() {
-  const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
 
-  async function submit(formData: FormData) {
-    if (loading) return;
+    async function submit(formData: FormData) {
+        if (loading) return false;
 
-    try {
-      setLoading(true);
-      await loginAction(formData);
-      toastSuccess("Login realizado com sucesso. Redirecionando...");
-    } catch (err) {
-      toastError(
-        "Email ou senha inválidos " +
-          (err instanceof Error ? `(${err.message})` : ""),
-      );
-    } finally {
-      setLoading(false);
+        try {
+            setLoading(true);
+            await loginAction(formData);
+            toastSuccess("Login realizado com sucesso. Redirecionando...");
+            return true;
+        } catch (err) {
+            toastError("Email ou senha inválidos " + (err instanceof Error ? `(${err.message})` : ""));
+            return false;
+        } finally {
+            setLoading(false);
+        }
     }
-  }
 
-  return { submit, loading };
+    return { submit, loading };
 }
-export default useLoginForm;
