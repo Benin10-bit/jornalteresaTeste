@@ -31,6 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" suppressHydrationWarning>
+      <link rel="icon" href="/logo_teresa.png"/>
       <body className={`${libre.variable} ${playFair.variable}`}>
         <ThemeContext>
           {children}

@@ -176,7 +176,7 @@ export default function AcervoIlustracoes() {
                         className="text-center text-base md:text-lg max-w-2xl mx-auto"
                         style={{ fontFamily: "Libre Baskerville", color: "var(--text)" }}
                     >
-                        Explore nossa coleção de ilustrações criadas pelos artistas do Jornal Tereza
+                        Explore nossa coleção de ilustrações criadas pelos artistas do Jornal Teresa
                     </p>
                 </div>
 
