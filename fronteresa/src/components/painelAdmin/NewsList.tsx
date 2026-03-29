@@ -5,11 +5,12 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/uiPainel/button";
 import { Loader2, Trash2, Edit, Copy, List as ListIcon } from "lucide-react";
 import { News } from "@/types/NewsPanel";
-import { catalogActions } from "@/actions/CatalogActions/catalogActions";
+import { catalogActions } from "@/actions/CatalogActions/catalogActionsSemCache";
 import { toastError, toastSuccess } from "@/lib/toast/toast";
 import { EditNewsModal } from "./EditNewsModal";
 import { NEWS_TYPE_ICONS } from "@/constants/NewsTypes";
 import { deleteNewsActions } from "@/actions/DeleteNews/deleteNewsActions";
+import Image from "next/image";
 
 const NewsList = () => {
   const [news, setNews] = useState<News[]>([]);
@@ -104,7 +105,7 @@ const NewsList = () => {
             >
               <div className="flex flex-col md:flex-row gap-4">
                 {item.arquivos[0].image1 && (
-                  <img
+                  <Image
                     src={
                       item.arquivos[0].image1.startsWith("http")
                         ? item.arquivos[0].image1
@@ -112,6 +113,9 @@ const NewsList = () => {
                     }
                     alt={item.title}
                     className="w-full md:w-40 h-40 object-cover rounded-lg shrink-0"
+                    width={160}
+                    height={160}
+                    loading="lazy"
                   />
                 )}
 
