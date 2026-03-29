@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import { PainelAdmin } from "@/components/painelAdmin/page";
 import { isAdminActions } from "@/actions/isAdminActions/isAdminActions";
-import Spinner from "@/components/ui/loaders/Spinner/page";
+import Loading from "./loading";
 
 export default function Painel() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -22,10 +22,5 @@ export default function Painel() {
 
   if (!isLoading && isAdmin) return <PainelAdmin />
 
-  return (
-    <div className="flex items-center justify-center h-screen flex-col gap-2">
-      <Spinner size={100} circleColor="#4b6b57" partialCircleColor="#91a98f" />
-      <h1 className="text-2xl">Carregando...</h1>
-    </div>
-  )
+  return <Loading />
 }
